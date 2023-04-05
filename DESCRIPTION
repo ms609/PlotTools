@@ -13,6 +13,7 @@ Authors@R: c(person("Martin R.", "Smith",
             )
 License: GPL (>= 2)
 Language: en-GB
+Depends: R (>= 3.2.0)
 Description: Annotate plots with legends for continuous variables and colour spectra using the base graphics plotting tools.
 Suggests: 
     spelling,
