@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/ms609/PlotTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ms609/PlotTools)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/PlotTools)](https://cran.r-project.org/package=PlotTools)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/PlotTools)](https://cran.r-project.org/package=PlotTools)
-[![DOI](https://zenodo.org/badge/XXXXXXX.svg)](https://zenodo.org/badge/latestdoi/XXXXXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7803390.svg)](https://doi.org/10.5281/zenodo.7803390)
 
 
 'PlotTools' is an R package that allows the addition of labels for continuous
@@ -22,11 +22,11 @@ issue on GitHub](https://github.com/ms609/PlotTools/issues/).
 
 ## Citation
 
-You can cite this package as:
+Cite this package as:
 
 Smith, Martin R. (2023). _PlotTools: Add continuous legends to plots._
 Comprehensive R Archive Network, 
-[doi:10.5281/zenodo.XXXXX](https://dx.doi.org/10.5281/zenodo.XXXXXXX).
+[doi:10.5281/zenodo.7803390](https://dx.doi.org/10.5281/zenodo.7803390).
 
 
 Please note that the 'PlotTools' project is released with a

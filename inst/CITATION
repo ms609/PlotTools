@@ -6,11 +6,11 @@ bibentry(
                   email = "martin.smith@durham.ac.uk"),
   title = "PlotTools: Add continuous legends to plots",
   year = "2023",
-  doi = "10.5281/zenodo.XXXXXXX",
+  doi = "10.5281/zenodo.7803390",
 
   textVersion = paste0(
     "Smith (2023). ",
     "PlotTools: Add continuous legends to plots. ",
-    "Comprehensive R Archive Network, doi: 10.5281/zenodo.XXXXXXX"
+    "Comprehensive R Archive Network, doi: 10.5281/zenodo.7803390"
   )
 )
