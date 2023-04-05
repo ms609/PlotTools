@@ -15,6 +15,7 @@
 
 ## R CMD check results
 
+Other than to acknowledge that this is a new submission -
 There were no ERRORs or WARNINGs or NOTEs.
 
 ## Downstream dependencies
