@@ -1,0 +1,90 @@
+
+#' Produce a legend for continuous gradient scales
+#'
+#' Prints an annotated vertical bar coloured according to a continuous palette.
+#'
+#' This convenience function is not yet very customizable; do file a GitHub
+#' issue if you would value additional functionality.
+#'
+#' @param x0,y0,x1,y1 Coordinates of the bottom-left and top-right end of the
+#' bar.
+#' @param absolute Logical specifying whether `x` and `y` values denote
+#' coordinates (`TRUE`) or relative position, where (0, 0) denotes the
+#' bottom-left of the plot area and (1, 1) the top right.
+#' @param legend Character vector with which to label points on `palette`.
+#' @param palette Colour palette to depict.
+#' @param lwd,lty,lend Additional parameters to [`segments()`],
+#' controlling line style.
+#' @param cex Character expansion factor relative to current `par("cex")`.
+#' @param text.col Colour used for the legend text.
+#' @param font,text.font Font used for the legend text; see [`text()`].
+#' @param title Text to display
+#' @param title.col Colour for title; defaults to `text.col[1]`.
+#' @param title.cex Expansion factor(s) for the title, defaults to `cex[1]`.
+#' @param title.adj Horizontal adjustment for title: see the help for
+#' `par("adj")`.
+#' @param title.font Font used for the legend title.
+#' @param pos,\dots Additional parameters to [`text()`].
+#'
+#' @examples
+#' plot(0:1, 0:1, type = "n", frame.plot = FALSE,
+#'      xlab = "x", ylab = "y")
+#' SpectrumLegend(legend = c("Dark", "Middle", "Bright"),
+#'                palette = hcl.colors(32L), lwd = 5,
+#'                title = "Brightness")
+#' SpectrumLegend(0.4, 0.95, 0.9, 0.95, abs = TRUE,
+#'                legend = seq(1, 9, by = 2), palette = 1:8, pos = 1)
+#' @template MRS
+#' @importFrom graphics par segments strheight strwidth text
+#' @export
+SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
+                           x1 = x0, y1 = y0 + 0.2,
+                           absolute = FALSE,
+                           legend = character(0), palette,
+                           lwd = 4, lty = 1, lend = "square", cex = 1,
+                           text.col = par("col"),
+                           font = NULL, text.font = font,
+                           title = NULL, title.col = text.col[1],
+                           title.cex = cex[1], title.adj = 0.5, title.font = 2,
+                           pos = 4,
+                           ...) {
+  nCol <- length(palette)
+
+  if (!absolute) {
+    corners <- par("usr") # x0 x1 y0 y1
+    xRange <- corners[2] - corners[1]
+    yRange <- corners[4] - corners[3]
+
+    # Order is important: lazy evaluation will set x1 = modified x0
+    x1 <- corners[1] + (x1 * xRange)
+    x0 <- corners[1] + (x0 * xRange)
+    y1 <- corners[3] + (y1 * yRange)
+    y0 <- corners[3] + (y0 * yRange)
+  }
+
+  segX <- x0 + ((x1 - x0) * 0:nCol / nCol)
+  segY <- y0 + ((y1 - y0) * 0:nCol / nCol)
+
+  nPlus1 <- nCol + 1L
+  segments(segX[-nPlus1], segY[-nPlus1],
+           segX[-1], segY[-1],
+           col = palette,
+           lwd = lwd, lty = lty, lend = lend)
+  text(seq(x0, x1, length.out = length(legend)),
+       seq(y0, y1, length.out = length(legend)),
+       col = text.col,
+       cex = cex,
+       font = text.font,
+       legend, pos = pos, ...)
+  if (!is.null(title)) {
+    text(mean(x0, x1) + (max(strwidth(legend)) / ifelse(pos == 2, -2, 2)),
+         max(y0, y1) + prod(
+           par("lheight"),
+           strheight("")
+         ),
+         title,
+         pos = 3,
+         cex = title.cex, adj = title.adj, font = title.font, col = title.col,
+         ...)
+  }
+}

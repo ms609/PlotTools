@@ -1,0 +1,28 @@
+Package: PlotTools
+Title: Tools for augmenting plots using the base graphics functions
+Version: 0.0.0.9000
+URL:
+  https://ms609.github.io/PlotTools/,
+  https://github.com/ms609/PlotTools/
+BugReports: https://github.com/ms609/PlotTools/issues/
+Authors@R: c(person("Martin R.", "Smith",
+                    email = "martin.smith@durham.ac.uk",
+                    role = c("aut", "cre", "cph"), 
+                    comment = c(ORCID = "0000-0001-5660-1727")
+                   )
+            )
+License: GPL (>= 2)
+Language: en-GB
+Description: Add legends to plots for continuous variables using the base graphics plotting tools.
+Suggests: 
+    spelling,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0),
+    vdiffr (>= 1.0.0),
+Config/Needs/website: pkgdown
+Config/testthat/edition: 3
+Encoding: UTF-8
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
