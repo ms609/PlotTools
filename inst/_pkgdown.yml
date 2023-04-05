@@ -1,0 +1,17 @@
+url: https://ms609.github.io/PlotTools
+
+authors:
+  Martin R. Smith:
+    href: https://smithlabdurham.github.io/
+
+development:
+  mode: auto
+
+template:
+  params:
+    bootswatch: journal
+    docsearch:
+      app_id: PQTZW3A3WS
+      api_key: 1a3f070f20390600ef8e4f7801791ec3
+      index_name: plot-tools
+    ganalytics: G-NJXMMHM5DV
