@@ -1,0 +1,16 @@
+bibentry(
+  bibtype = "article",
+  key = "Smith2023",
+  journal = "Comprehensive R Archive Network",
+  author = person(c("Martin", "R."), "Smith",
+                  email = "martin.smith@durham.ac.uk"),
+  title = "PlotTools: Add continuous legends to plots",
+  year = "2023",
+  doi = "10.5281/zenodo.XXXXXXX",
+
+  textVersion = paste0(
+    "Smith (2023). ",
+    "PlotTools: Add continuous legends to plots. ",
+    "Comprehensive R Archive Network, doi: 10.5281/zenodo.XXXXXXX"
+  )
+)

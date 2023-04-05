@@ -1,5 +1,5 @@
 Package: PlotTools
-Title: Tools for augmenting plots using the base graphics functions
+Title: Add continuous legends to plots
 Version: 0.0.0.9000
 URL:
   https://ms609.github.io/PlotTools/,
@@ -13,7 +13,7 @@ Authors@R: c(person("Martin R.", "Smith",
             )
 License: GPL (>= 2)
 Language: en-GB
-Description: Add legends to plots for continuous variables using the base graphics plotting tools.
+Description: Annotate plots with legends for continuous variables and colour spectra using the base graphics plotting tools.
 Suggests: 
     spelling,
     knitr,
