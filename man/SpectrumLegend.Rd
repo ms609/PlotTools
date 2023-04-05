@@ -87,9 +87,12 @@ controlling line style.}
 
 \item{pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
 
-\item{width}{Vector of length two specifying width of legend bar at base and top.}
+\item{width}{Vector of length two specifying width of legend bar at base
+and top.}
 
-\item{scale}{Character string specifying whether \code{width = 1} corresponds to: \code{"pch"}, the size of a plotting symbol with \code{pch = 1}; \code{"lwd"}, the width of a line with \code{lwd = 1}.}
+\item{scale}{Character string specifying whether \code{width = 1} corresponds to:
+\code{"pch"}, the size of a plotting symbol with \code{pch = 1};
+\code{"lwd"}, the width of a line with \code{lwd = 1}.}
 
 \item{col}{Colour used for the width bar.}
 }

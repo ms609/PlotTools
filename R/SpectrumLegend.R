@@ -93,8 +93,11 @@ SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
 }
 
 #' @rdname SpectrumLegend
-#' @param width Vector of length two specifying width of legend bar at base and top.
-#' @param scale Character string specifying whether `width = 1` corresponds to: `"pch"`, the size of a plotting symbol with `pch = 1`; `"lwd"`, the width of a line with `lwd = 1`.
+#' @param width Vector of length two specifying width of legend bar at base
+#' and top.
+#' @param scale Character string specifying whether `width = 1` corresponds to:
+#' `"pch"`, the size of a plotting symbol with `pch = 1`;
+#' `"lwd"`, the width of a line with `lwd = 1`.
 #' @param col Colour used for the width bar.
 #' @examples
 #' SizeLegend(0.8, title = "Width", legend = c("min", "max"))
