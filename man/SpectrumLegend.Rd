@@ -23,7 +23,7 @@ SpectrumLegend(
   title.col = text.col[1],
   title.cex = cex[1],
   title.adj = 0.5,
-  title.font = 2,
+  title.font = text.font[1],
   pos = 4,
   ...
 )
