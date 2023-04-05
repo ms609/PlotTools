@@ -18,3 +18,29 @@ test_that("SpectrumLegend()", {
                    title = "Multi-\nline\ntitle", xpd = NA)
   })
 })
+
+test_that("SizeLegend()", {
+  skip_if(packageVersion("graphics") < "4.1")
+  skip_if(packageVersion("vdiffr") < "1.0")
+  vdiffr::expect_doppelganger("SizeLegend", function() {
+    # Set up blank plot
+    plot(0:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
+         xlab = "x", ylab = "y")
+    SizeLegend(legend = c("Narrow", "Middle", "Wide"),
+               width = c(1, 5),
+               col = "darkblue",
+               text.col = c("blue", "brown", "red"),
+               title = "Blue title", title.font = 3, title.cex = 0.5,
+               xpd = NA)
+    expect_warning(SizeLegend(0.4, 10.6, 0.2, 11, abs = TRUE,
+               legend = seq(0, 10, by = 2),
+               width = 12,
+               scale = "pch",
+               col = "grey",
+               lty = "dotted", pos = 2,
+               lmitre = 2, lend = "round", ljoin = "round",
+               title = "Multi-\nline\ntitle", xpd = NA),
+               "length two")
+    points(0.2, 11, pch = 1, cex = 12, col = "green")
+  })
+})

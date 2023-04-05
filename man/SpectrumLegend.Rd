@@ -2,6 +2,7 @@
 % Please edit documentation in R/SpectrumLegend.R
 \name{SpectrumLegend}
 \alias{SpectrumLegend}
+\alias{SizeLegend}
 \title{Produce a legend for continuous gradient scales}
 \usage{
 SpectrumLegend(
@@ -16,6 +17,30 @@ SpectrumLegend(
   lty = 1,
   lend = "square",
   cex = 1,
+  text.col = par("col"),
+  font = NULL,
+  text.font = font,
+  title = NULL,
+  title.col = text.col[1],
+  title.cex = cex[1],
+  title.adj = 0.5,
+  title.font = text.font[1],
+  pos = 4,
+  ...
+)
+
+SizeLegend(
+  x0 = 0.05,
+  y0 = 0.05,
+  x1 = x0,
+  y1 = y0 + 0.2,
+  absolute = FALSE,
+  legend = character(0),
+  width = c(0, 1),
+  scale = c("pch", "lwd"),
+  lend = "square",
+  cex = 1,
+  col = par("col"),
   text.col = par("col"),
   font = NULL,
   text.font = font,
@@ -61,6 +86,12 @@ controlling line style.}
 \item{title.font}{Font used for the legend title.}
 
 \item{pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
+
+\item{width}{Vector of length two specifying width of legend bar at base and top.}
+
+\item{scale}{Character string specifying whether \code{width = 1} corresponds to: \code{"pch"}, the size of a plotting symbol with \code{pch = 1}; \code{"lwd"}, the width of a line with \code{lwd = 1}.}
+
+\item{col}{Colour used for the width bar.}
 }
 \description{
 Prints an annotated vertical bar coloured according to a continuous palette.
@@ -77,6 +108,7 @@ SpectrumLegend(legend = c("Dark", "Middle", "Bright"),
                title = "Brightness")
 SpectrumLegend(0.4, 0.95, 0.9, 0.95, abs = TRUE,
                legend = seq(1, 9, by = 2), palette = 1:8, pos = 1)
+SizeLegend(0.8, legend = c("min", "max"))
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
