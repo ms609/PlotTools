@@ -108,7 +108,7 @@ SpectrumLegend(legend = c("Dark", "Middle", "Bright"),
                title = "Brightness")
 SpectrumLegend(0.4, 0.95, 0.9, 0.95, abs = TRUE,
                legend = seq(1, 9, by = 2), palette = 1:8, pos = 1)
-SizeLegend(0.8, legend = c("min", "max"))
+SizeLegend(0.8, title = "Width", legend = c("min", "max"))
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
