@@ -13,8 +13,13 @@ SpectrumLegend(
   absolute = FALSE,
   legend = character(0),
   palette,
-  lwd = 4,
   lty = 1,
+  lwd = 4,
+  bty = "o",
+  bg = par("bg"),
+  box.lwd = par("lwd"),
+  box.lty = par("lty"),
+  box.col = par("fg"),
   lend = "square",
   cex = 1,
   text.col = par("col"),
@@ -39,6 +44,11 @@ SizeLegend(
   width = c(0, 1),
   scale = c("pch", "lwd"),
   lend = "square",
+  bty = "o",
+  bg = par("bg"),
+  box.lwd = par("lwd"),
+  box.lty = par("lty"),
+  box.col = par("fg"),
   cex = 1,
   col = par("col"),
   text.col = par("col"),
@@ -68,6 +78,13 @@ bottom-left of the plot area and (1, 1) the top right.}
 \item{lwd, lty, lend}{Additional parameters to \code{\link[=segments]{segments()}},
 controlling line style.}
 
+\item{bty}{Character specifying the type of box to be drawn around the
+legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}
+
+\item{bg}{The background colour for the legend box. (Note that this is used only if \code{bty != "n"}.)}
+
+\item{box.lty, box.lwd, box.col}{The line type, width and colour for the legend box (if \code{bty = "o"}).}
+
 \item{cex}{Character expansion factor relative to current \code{par("cex")}.}
 
 \item{text.col}{Colour used for the legend text.}
@@ -95,6 +112,20 @@ and top.}
 \code{"lwd"}, the width of a line with \code{lwd = 1}.}
 
 \item{col}{Colour used for the width bar.}
+}
+\value{
+A list, returned invisibly, with components:
+\itemize{
+\item \code{rect} A list with components:
+\itemize{
+\item \code{w}, \code{h}: positive numbers giving \emph{w}idth and \emph{h}eight of the
+legend's box.
+\item \code{left}, \code{top}: x and y coordinates of the upper left corner of the
+box.
+}
+\item \code{text}: A list with components \code{x}, \code{y}, numeric vectors of length
+\code{length(legend)}, giving the x and y coordinates of the legend's text(s).
+}
 }
 \description{
 Prints an annotated vertical bar coloured according to a continuous palette.

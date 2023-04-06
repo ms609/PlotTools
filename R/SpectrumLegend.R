@@ -15,6 +15,10 @@
 #' @param lwd,lty,lend Additional parameters to [`segments()`],
 #' controlling line style.
 #' @param cex Character expansion factor relative to current `par("cex")`.
+#' @param bty Character specifying the type of box to be drawn around the
+#' legend. The allowed values are `"o"` (the default) and `"n"`.
+#' @param bg The background colour for the legend box. (Note that this is used only if `bty != "n"`.)
+#' @param box.lty,box.lwd,box.col The line type, width and colour for the legend box (if `bty = "o"`).
 #' @param text.col Colour used for the legend text.
 #' @param font,text.font Font used for the legend text; see [`text()`].
 #' @param title Text to display
@@ -24,6 +28,15 @@
 #' `par("adj")`.
 #' @param title.font Font used for the legend title.
 #' @param pos,\dots Additional parameters to [`text()`].
+#'
+#' @returns A list, returned invisibly, with components:
+#' - `rect` A list with components:
+#'   - `w`, `h`: positive numbers giving *w*idth and *h*eight of the
+#'     legend's box.
+#'   - `left`, `top`: x and y coordinates of the upper left corner of the
+#'     box.
+#' - `text`: A list with components `x`, `y`, numeric vectors of length
+#'   `length(legend)`, giving the x and y coordinates of the legend's text(s).
 #'
 #' @examples
 #' plot(0:1, 0:1, type = "n", frame.plot = FALSE,
@@ -40,7 +53,11 @@ SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
                            x1 = x0, y1 = y0 + 0.2,
                            absolute = FALSE,
                            legend = character(0), palette,
-                           lwd = 4, lty = 1,
+                           lty = 1, lwd = 4,
+                           bty = "o", bg = par("bg"),
+                           box.lwd = par("lwd"),
+                           box.lty = par("lty"),
+                           box.col = par("fg"),
                            lend = "square", cex = 1,
                            text.col = par("col"),
                            font = NULL, text.font = font,
@@ -73,8 +90,9 @@ SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
            col = palette,
            lwd = lwd, lty = lty, lend = lend,
            ...)
-  text(seq(x0, x1, length.out = length(legend)),
-       seq(y0, y1, length.out = length(legend)),
+  textX <- seq(x0, x1, length.out = length(legend))
+  textY <- seq(y0, y1, length.out = length(legend))
+  text(textX, textY,
        col = text.col,
        cex = cex,
        font = text.font,
@@ -90,6 +108,12 @@ SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
          cex = title.cex, adj = title.adj, font = title.font, col = title.col,
          ...)
   }
+
+  # Return:
+  invisible(list(
+    rect = list(),
+    text = list(x = textX, y = textY))
+  )
 }
 
 #' @rdname SpectrumLegend
@@ -109,6 +133,10 @@ SizeLegend <- function(x0 = 0.05, y0 = 0.05,
                        width = c(0, 1),
                        scale = c("pch", "lwd"),
                        lend = "square",
+                       bty = "o", bg = par("bg"),
+                       box.lwd = par("lwd"),
+                       box.lty = par("lty"),
+                       box.col = par("fg"),
                        cex = 1,
                        col = par("col"),
                        text.col = par("col"),
@@ -148,8 +176,9 @@ SizeLegend <- function(x0 = 0.05, y0 = 0.05,
            col = col,
            lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend,
            ...)
-  text(seq(x0, x1, length.out = length(legend)),
-       seq(y0, y1, length.out = length(legend)),
+  textX <- seq(x0, x1, length.out = length(legend))
+  textY <- seq(y0, y1, length.out = length(legend))
+  text(textX, textY,
        col = text.col,
        cex = cex,
        font = text.font,
@@ -165,4 +194,10 @@ SizeLegend <- function(x0 = 0.05, y0 = 0.05,
          cex = title.cex, adj = title.adj, font = title.font, col = title.col,
          ...)
   }
+
+  # Return:
+  invisible(list(
+    rect = list(),
+    text = list(x = textX, y = textY))
+  )
 }
