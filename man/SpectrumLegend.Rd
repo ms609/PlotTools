@@ -6,32 +6,18 @@
 \title{Produce a legend for continuous gradient scales}
 \usage{
 SpectrumLegend(
-  x0 = 0.05,
-  y0 = 0.05,
-  x1 = x0,
-  y1 = y0 + 0.2,
-  absolute = FALSE,
-  legend = character(0),
-  palette,
+  x,
+  ...,
+  legend,
   lty = 1,
   lwd = 4,
   bty = "o",
-  bg = par("bg"),
-  box.lwd = par("lwd"),
-  box.lty = par("lty"),
-  box.col = par("fg"),
+  palette,
+  x.intersp = 1,
+  y.intersp = 1,
+  horiz = FALSE,
   lend = "square",
-  cex = 1,
-  text.col = par("col"),
-  font = NULL,
-  text.font = font,
-  title = NULL,
-  title.col = text.col[1],
-  title.cex = cex[1],
-  title.adj = 0.5,
-  title.font = text.font[1],
-  pos = 4,
-  ...
+  cex = 1
 )
 
 SizeLegend(
@@ -64,16 +50,7 @@ SizeLegend(
 )
 }
 \arguments{
-\item{x0, y0, x1, y1}{Coordinates of the bottom-left and top-right end of the
-bar.}
-
-\item{absolute}{Logical specifying whether \code{x} and \code{y} values denote
-coordinates (\code{TRUE}) or relative position, where (0, 0) denotes the
-bottom-left of the plot area and (1, 1) the top right.}
-
 \item{legend}{Character vector with which to label points on \code{palette}.}
-
-\item{palette}{Colour palette to depict.}
 
 \item{lwd, lty, lend}{Additional parameters to \code{\link[=segments]{segments()}},
 controlling line style.}
@@ -81,11 +58,29 @@ controlling line style.}
 \item{bty}{Character specifying the type of box to be drawn around the
 legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}
 
+\item{palette}{Colour palette to depict.}
+
+\item{cex}{Character expansion factor relative to current \code{par("cex")}.}
+
+\item{x0, y0, x1, y1}{Coordinates of the bottom-left and top-right end of the
+bar.}
+
+\item{absolute}{Logical specifying whether \code{x} and \code{y} values denote
+coordinates (\code{TRUE}) or relative position, where (0, 0) denotes the
+bottom-left of the plot area and (1, 1) the top right.}
+
+\item{width}{Vector of length two specifying width of legend bar at base
+and top.}
+
+\item{scale}{Character string specifying whether \code{width = 1} corresponds to:
+\code{"pch"}, the size of a plotting symbol with \code{pch = 1};
+\code{"lwd"}, the width of a line with \code{lwd = 1}.}
+
 \item{bg}{The background colour for the legend box. (Note that this is used only if \code{bty != "n"}.)}
 
 \item{box.lty, box.lwd, box.col}{The line type, width and colour for the legend box (if \code{bty = "o"}).}
 
-\item{cex}{Character expansion factor relative to current \code{par("cex")}.}
+\item{col}{Colour used for the width bar.}
 
 \item{text.col}{Colour used for the legend text.}
 
@@ -104,14 +99,7 @@ legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}
 
 \item{pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
 
-\item{width}{Vector of length two specifying width of legend bar at base
-and top.}
-
-\item{scale}{Character string specifying whether \code{width = 1} corresponds to:
-\code{"pch"}, the size of a plotting symbol with \code{pch = 1};
-\code{"lwd"}, the width of a line with \code{lwd = 1}.}
-
-\item{col}{Colour used for the width bar.}
+\item{text.width}{Width of the legend text in x ("user") coordinates. For details, see \code{\link[=legend]{legend()}}.}
 }
 \value{
 A list, returned invisibly, with components:
@@ -137,11 +125,14 @@ issue if you would value additional functionality.
 \examples{
 plot(0:1, 0:1, type = "n", frame.plot = FALSE,
      xlab = "x", ylab = "y")
-SpectrumLegend(legend = c("Dark", "Middle", "Bright"),
+
+SpectrumLegend("topright", legend = c("Bright", "Middle", "Dark"),
                palette = hcl.colors(32L), lwd = 5,
                title = "Brightness")
-SpectrumLegend(0.4, 0.95, 0.9, 0.95, abs = TRUE,
-               legend = seq(1, 9, by = 2), palette = 1:8, pos = 1)
+SpectrumLegend("bottom", horiz = TRUE,
+               inset = 0.05, # Inset from plot margin
+               y.intersp = -1, # Plot bar above, not below, labels
+               legend = seq(1, 9, by = 2), palette = 1:8)
 SizeLegend(0.8, title = "Width", legend = c("min", "max"))
 }
 \author{
