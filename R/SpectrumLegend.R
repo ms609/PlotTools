@@ -68,6 +68,7 @@ SpectrumLegend <- function(x = "topright", ...,
                 cex = cex,
                 bty = ifelse(horiz, "n", bty),
                 lty = 0, ncol = 1,
+                seg.len = seg.len,
                 ...)
   textXY <- lgd$text
 
@@ -77,7 +78,7 @@ SpectrumLegend <- function(x = "topright", ...,
   if (horiz) {
     xEnds <- range(textXY$x)
     yc <- Cex * xyc[2L]
-    barSpace <- (0.3 + 0.7) * yc
+    barSpace <- yc
     yEnds <- textXY$y[c(1, 1)] - barSpace
 
     lgd$rect$left <- lgd$rect$left + (barSpace / 2) # not plotting lines
@@ -95,7 +96,7 @@ SpectrumLegend <- function(x = "topright", ...,
     }
   } else {
     xc <- Cex * xyc[1L]
-    xEnds <- textXY$x[c(1, 1)] - (0.7 * xc) # 0.7 from legend
+    xEnds <- textXY$x[c(1, 1)] - xc - (xc * seg.len / 2)
     yEnds <- range(textXY$y)
   }
 
