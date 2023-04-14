@@ -13,8 +13,7 @@ SpectrumLegend(
   lwd = 4,
   bty = "o",
   palette,
-  x.intersp = 1,
-  y.intersp = 1,
+  adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
   horiz = FALSE,
   lend = "square",
   cex = 1
@@ -50,6 +49,8 @@ SizeLegend(
 )
 }
 \arguments{
+\item{x, horiz, adj, pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
+
 \item{legend}{Character vector with which to label points on \code{palette}.}
 
 \item{lwd, lty, lend}{Additional parameters to \code{\link[=segments]{segments()}},
@@ -96,10 +97,6 @@ and top.}
 \code{par("adj")}.}
 
 \item{title.font}{Font used for the legend title.}
-
-\item{pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
-
-\item{text.width}{Width of the legend text in x ("user") coordinates. For details, see \code{\link[=legend]{legend()}}.}
 }
 \value{
 A list, returned invisibly, with components:
@@ -131,7 +128,6 @@ SpectrumLegend("topright", legend = c("Bright", "Middle", "Dark"),
                title = "Brightness")
 SpectrumLegend("bottom", horiz = TRUE,
                inset = 0.05, # Inset from plot margin
-               y.intersp = -1, # Plot bar above, not below, labels
                legend = seq(1, 9, by = 2), palette = 1:8)
 SizeLegend(0.8, title = "Width", legend = c("min", "max"))
 }

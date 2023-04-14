@@ -19,7 +19,6 @@
 #' legend. The allowed values are `"o"` (the default) and `"n"`.
 #' @param bg The background colour for the legend box. (Note that this is used only if `bty != "n"`.)
 #' @param box.lty,box.lwd,box.col The line type, width and colour for the legend box (if `bty = "o"`).
-#' @param text.width Width of the legend text in x ("user") coordinates. For details, see [`legend()`].
 #' @param text.col Colour used for the legend text.
 #' @param font,text.font Font used for the legend text; see [`text()`].
 #' @param title Text to display
@@ -28,7 +27,7 @@
 #' @param title.adj Horizontal adjustment for title: see the help for
 #' `par("adj")`.
 #' @param title.font Font used for the legend title.
-#' @param pos,\dots Additional parameters to [`text()`].
+#' @param x,horiz,adj,pos,\dots Additional parameters to [`text()`].
 #'
 #' @returns A list, returned invisibly, with components:
 #' - `rect` A list with components:
@@ -48,7 +47,6 @@
 #'                title = "Brightness")
 #' SpectrumLegend("bottom", horiz = TRUE,
 #'                inset = 0.05, # Inset from plot margin
-#'                y.intersp = -1, # Plot bar above, not below, labels
 #'                legend = seq(1, 9, by = 2), palette = 1:8)
 #' @template MRS
 #' @importFrom graphics legend par rect segments xyinch
@@ -59,7 +57,7 @@ SpectrumLegend <- function(x, ...,
                            lty = 1, lwd = 4,
                            bty = "o",
                            palette,
-                           x.intersp = 1, y.intersp = 1,
+                           adj = if(horiz) c(0.5, 0.5) else c(0, 0.5),
                            horiz = FALSE,
                            lend = "square",
                            cex = 1
@@ -69,7 +67,7 @@ SpectrumLegend <- function(x, ...,
   lgd <- legend(x = x,
                 legend = legend,
                 horiz = horiz,
-                x.intersp = x.intersp, y.intersp = y.intersp,
+                adj = adj,
                 cex = cex,
                 bty = ifelse(horiz, "n", bty),
                 lty = 0, ncol = 1,
@@ -82,13 +80,16 @@ SpectrumLegend <- function(x, ...,
   if (horiz) {
     xEnds <- range(textXY$x)
     yc <- Cex * xyc[2L]
-    yEnds <- textXY$y[c(1, 1)] - (y.intersp * yc)
+    barSpace <- (0.3 + 0.7) * yc
+    yEnds <- textXY$y[c(1, 1)] - barSpace
+
+    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # not plotting lines
+    lgd$rect$top <- lgd$rect$top
+    lgd$rect$h <- lgd$rect$h + barSpace
 
     box <- lgd$rect
     dots <- list(...)
-    dput(yc)
-    dput(y.intersp)
-    rect(box$left, box$top + box$h + (y.intersp * yc),
+    rect(box$left, box$top - box$h,
          box$left + box$w, box$top,
          col = dots$bg, lwd = dots$box.lwd, lty = dots$box.lty,
          border = dots$box.col)
