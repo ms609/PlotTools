@@ -6,7 +6,7 @@
 \title{Produce a legend for continuous gradient scales}
 \usage{
 SpectrumLegend(
-  x,
+  x = "topright",
   ...,
   legend,
   lty = 1,
@@ -16,40 +16,29 @@ SpectrumLegend(
   adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
   horiz = FALSE,
   lend = "square",
-  cex = 1
+  cex = 1,
+  seg.len = 1
 )
 
 SizeLegend(
-  x0 = 0.05,
-  y0 = 0.05,
-  x1 = x0,
-  y1 = y0 + 0.2,
-  absolute = FALSE,
+  x = "topright",
+  ...,
   legend = character(0),
   width = c(0, 1),
   scale = c("pch", "lwd"),
-  lend = "square",
+  lty = 1,
+  lwd = 4,
   bty = "o",
-  bg = par("bg"),
-  box.lwd = par("lwd"),
-  box.lty = par("lty"),
-  box.col = par("fg"),
-  cex = 1,
   col = par("col"),
   text.col = par("col"),
-  font = NULL,
-  text.font = font,
-  title = NULL,
-  title.col = text.col[1],
-  title.cex = cex[1],
-  title.adj = 0.5,
-  title.font = text.font[1],
-  pos = 4,
-  ...
+  adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
+  horiz = FALSE,
+  lend = "square",
+  cex = 1
 )
 }
 \arguments{
-\item{x, horiz, adj, pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
+\item{x, horiz, adj, seg.len, \dots}{Additional parameters to \code{\link[=legend]{legend()}}.}
 
 \item{legend}{Character vector with which to label points on \code{palette}.
 Note that, in a vertical legend, values will be printed from top down;
@@ -65,13 +54,6 @@ legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}
 
 \item{cex}{Character expansion factor relative to current \code{par("cex")}.}
 
-\item{x0, y0, x1, y1}{Coordinates of the bottom-left and top-right end of the
-bar.}
-
-\item{absolute}{Logical specifying whether \code{x} and \code{y} values denote
-coordinates (\code{TRUE}) or relative position, where (0, 0) denotes the
-bottom-left of the plot area and (1, 1) the top right.}
-
 \item{width}{Vector of length two specifying width of legend bar at base
 and top.}
 
@@ -79,26 +61,9 @@ and top.}
 \code{"pch"}, the size of a plotting symbol with \code{pch = 1};
 \code{"lwd"}, the width of a line with \code{lwd = 1}.}
 
-\item{bg}{The background colour for the legend box. (Note that this is used only if \code{bty != "n"}.)}
-
-\item{box.lty, box.lwd, box.col}{The line type, width and colour for the legend box (if \code{bty = "o"}).}
-
 \item{col}{Colour used for the width bar.}
 
 \item{text.col}{Colour used for the legend text.}
-
-\item{font, text.font}{Font used for the legend text; see \code{\link[=text]{text()}}.}
-
-\item{title}{Text to display}
-
-\item{title.col}{Colour for title; defaults to \code{text.col[1]}.}
-
-\item{title.cex}{Expansion factor(s) for the title, defaults to \code{cex[1]}.}
-
-\item{title.adj}{Horizontal adjustment for title: see the help for
-\code{par("adj")}.}
-
-\item{title.font}{Font used for the legend title.}
 }
 \value{
 A list, returned invisibly, with components:
@@ -120,6 +85,10 @@ Prints an annotated vertical bar coloured according to a continuous palette.
 \details{
 This convenience function is not yet very customizable; do file a GitHub
 issue if you would value additional functionality.
+
+Note that the \code{bg} parameter to specify the background colour for the legend
+box is not presently supported in vertical legends.
+For use in vertical legends, open a \href{https://github.com/ms609/PlotTools/issues/new}{GitHub issue}.
 }
 \examples{
 plot(0:1, 0:1, type = "n", frame.plot = FALSE,

@@ -5,11 +5,11 @@
 #' This convenience function is not yet very customizable; do file a GitHub
 #' issue if you would value additional functionality.
 #'
-#' @param x0,y0,x1,y1 Coordinates of the bottom-left and top-right end of the
-#' bar.
-#' @param absolute Logical specifying whether `x` and `y` values denote
-#' coordinates (`TRUE`) or relative position, where (0, 0) denotes the
-#' bottom-left of the plot area and (1, 1) the top right.
+#' Note that the `bg` parameter to specify the background colour for the legend
+#' box is not presently supported in vertical legends.
+#' For use in vertical legends, open a [GitHub issue](
+#' https://github.com/ms609/PlotTools/issues/new).
+#'
 #' @param legend Character vector with which to label points on `palette`.
 #' Note that, in a vertical legend, values will be printed from top down;
 #' use [`rev()`] to reverse the order.
@@ -19,19 +19,8 @@
 #' @param cex Character expansion factor relative to current `par("cex")`.
 #' @param bty Character specifying the type of box to be drawn around the
 #' legend. The allowed values are `"o"` (the default) and `"n"`.
-#' @param bg The background colour for the legend box. (Note that this is used only if `bty != "n"`, and, at present, in vertical legends.
-#'  For use in vertical legends, open a [GitHub issue](
-#'  https://github.com/ms609/PlotTools/issues/new).)
-#' @param box.lty,box.lwd,box.col The line type, width and colour for the legend box (if `bty = "o"`).
 #' @param text.col Colour used for the legend text.
-#' @param font,text.font Font used for the legend text; see [`text()`].
-#' @param title Text to display
-#' @param title.col Colour for title; defaults to `text.col[1]`.
-#' @param title.cex Expansion factor(s) for the title, defaults to `cex[1]`.
-#' @param title.adj Horizontal adjustment for title: see the help for
-#' `par("adj")`.
-#' @param title.font Font used for the legend title.
-#' @param x,horiz,adj,pos,\dots Additional parameters to [`text()`].
+#' @param x,horiz,adj,seg.len,\dots Additional parameters to [`legend()`].
 #'
 #' @returns A list, returned invisibly, with components:
 #' - `rect` A list with components:
@@ -64,7 +53,8 @@ SpectrumLegend <- function(x = "topright", ...,
                            adj = if(horiz) c(0.5, 0.5) else c(0, 0.5),
                            horiz = FALSE,
                            lend = "square",
-                           cex = 1
+                           cex = 1,
+                           seg.len = 1
                            ) {
   nCol <- length(palette)
   if (nCol < 1) {
