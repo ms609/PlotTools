@@ -39,15 +39,16 @@ test_that("SizeLegend()", {
                title = "Big blue title", title.font = 3, title.cex = 1.5,
                text.col = c("blue", "brown", "red"),
                xpd = NA)
-    expect_warning(SizeLegend(0.4, 10.6, 0.2, 11, abs = TRUE,
+    expect_warning(SizeLegend(x = 0.4, y = 11,
                legend = seq(0, 10, by = 2),
                width = 12,
                scale = "pch",
-               col = "grey",
-               lty = "dotted", pos = 2,
+               col = "#cccccc88",
+               lty = "dotted",
                box.lty = "dashed", box.lwd = 2,
-               box.col = "darkred", bg = "#eeddcc",
-               lmitre = 2, lend = "round", ljoin = "round",
+               box.col = "darkred",
+               # bg = "#eeddcc", # TODO - see SpectrumLegend above
+               lend = "round",
                title = "Multi-\nline\ntitle", xpd = NA),
                "length two")
     points(0.2, 11, pch = 1, cex = 12, col = "green")
