@@ -153,7 +153,7 @@
 <text x='97.78' y='483.14' style='font-size: 12.00px; fill: #0000FF; font-family: sans;' textLength='38.68px' lengthAdjust='spacingAndGlyphs'>Narrow</text>
 <text x='97.78' y='438.78' style='font-size: 12.00px; fill: #A52A2A; font-family: sans;' textLength='35.35px' lengthAdjust='spacingAndGlyphs'>Middle</text>
 <text x='97.78' y='394.43' style='font-size: 12.00px; fill: #FF0000; font-family: sans;' textLength='27.34px' lengthAdjust='spacingAndGlyphs'>Wide</text>
-<text x='109.92' y='376.22' text-anchor='middle' style='font-size: 6.00px; font-style: italic; fill: #0000FF; font-family: sans;' textLength='23.01px' lengthAdjust='spacingAndGlyphs'>Blue title</text>
+<text x='109.92' y='376.22' text-anchor='middle' style='font-size: 18.00px; font-style: italic; fill: #0000FF; font-family: sans;' textLength='98.05px' lengthAdjust='spacingAndGlyphs'>Big blue title</text>
 <line x1='333.33' y1='239.73' x2='332.51' y2='238.09' style='stroke-width: 0.00; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
 <line x1='332.51' y1='238.09' x2='331.69' y2='236.45' style='stroke-width: 0.65; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
 <line x1='331.69' y1='236.45' x2='330.87' y2='234.81' style='stroke-width: 1.30; stroke: #BEBEBE; stroke-dasharray: 1.73,5.19;' />

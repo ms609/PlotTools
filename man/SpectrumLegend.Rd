@@ -51,7 +51,9 @@ SizeLegend(
 \arguments{
 \item{x, horiz, adj, pos, \dots}{Additional parameters to \code{\link[=text]{text()}}.}
 
-\item{legend}{Character vector with which to label points on \code{palette}.}
+\item{legend}{Character vector with which to label points on \code{palette}.
+Note that, in a vertical legend, values will be printed from top down;
+use \code{\link[=rev]{rev()}} to reverse the order.}
 
 \item{lwd, lty, lend}{Additional parameters to \code{\link[=segments]{segments()}},
 controlling line style.}

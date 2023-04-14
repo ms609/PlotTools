@@ -11,13 +11,17 @@
 #' coordinates (`TRUE`) or relative position, where (0, 0) denotes the
 #' bottom-left of the plot area and (1, 1) the top right.
 #' @param legend Character vector with which to label points on `palette`.
+#' Note that, in a vertical legend, values will be printed from top down;
+#' use [`rev()`] to reverse the order.
 #' @param palette Colour palette to depict.
 #' @param lwd,lty,lend Additional parameters to [`segments()`],
 #' controlling line style.
 #' @param cex Character expansion factor relative to current `par("cex")`.
 #' @param bty Character specifying the type of box to be drawn around the
 #' legend. The allowed values are `"o"` (the default) and `"n"`.
-#' @param bg The background colour for the legend box. (Note that this is used only if `bty != "n"`.)
+#' @param bg The background colour for the legend box. (Note that this is used only if `bty != "n"`, and, at present, in vertical legends.
+#'  For use in vertical legends, open a [GitHub issue](
+#'  https://github.com/ms609/PlotTools/issues/new).)
 #' @param box.lty,box.lwd,box.col The line type, width and colour for the legend box (if `bty = "o"`).
 #' @param text.col Colour used for the legend text.
 #' @param font,text.font Font used for the legend text; see [`text()`].
@@ -63,6 +67,9 @@ SpectrumLegend <- function(x, ...,
                            cex = 1
                            ) {
   nCol <- length(palette)
+  if (nCol < 1) {
+    stop("palette has length zero")
+  }
 
   lgd <- legend(x = x,
                 legend = legend,
@@ -87,12 +94,15 @@ SpectrumLegend <- function(x, ...,
     lgd$rect$top <- lgd$rect$top
     lgd$rect$h <- lgd$rect$h + barSpace
 
-    box <- lgd$rect
-    dots <- list(...)
-    rect(box$left, box$top - box$h,
-         box$left + box$w, box$top,
-         col = dots$bg, lwd = dots$box.lwd, lty = dots$box.lty,
-         border = dots$box.col)
+    if (bty == "o") {
+      box <- lgd$rect
+      dots <- list(...)
+      rect(box$left, box$top - box$h,
+           box$left + box$w, box$top,
+           # col = dots$bg, # TODO not supported - overprints text
+           lwd = dots$box.lwd, lty = dots$box.lty,
+           border = dots$box.col)
+    }
   } else {
     xc <- Cex * xyc[1L]
     xEnds <- textXY$x[c(1, 1)] - (0.7 * xc) # 0.7 from legend
