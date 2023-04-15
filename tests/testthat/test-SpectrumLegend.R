@@ -24,10 +24,10 @@ test_that("SpectrumLegend()", {
   })
 })
 
-test_that("SizeLegend()", {
+test_that("Vertical SizeLegend()", {
   skip_if(packageVersion("graphics") < "4.1")
   skip_if(packageVersion("vdiffr") < "1.0")
-  vdiffr::expect_doppelganger("SizeLegend", function() {
+  vdiffr::expect_doppelganger("SizeLegend-v", function() {
     # Set up blank plot
     plot(0:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
          xlab = "x", ylab = "y")
@@ -57,5 +57,33 @@ test_that("SizeLegend()", {
     xc <- xyinch(par("cin"))[1]
     points(val$text$x[1] - xc - (xc * (big / 4)), val$text$y[1],
            pch = 1, cex = big, col = "darkgreen")
+  })
+})
+
+test_that("Horizontal SizeLegend()", {
+  skip_if(packageVersion("graphics") < "4.1")
+  skip_if(packageVersion("vdiffr") < "1.0")
+  vdiffr::expect_doppelganger("SizeLegend-h", function() {
+    # Set up blank plot
+    plot(0:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
+         xlab = "x", ylab = "y")
+
+    SizeLegend(
+      horiz = TRUE, width = c(1, 4),
+      x = "top", inset = 0.05,
+      title = "Horizontal",
+      legend = c("Left", "Middle", "Right"),
+      palette = function (n) hcl.colors(n, "RdYlBu"),
+      text.col = c("blue", "brown", "red")
+    )
+
+    SizeLegend(
+      horiz = TRUE, width = c(4, 1),
+      x = "bottom", inset = 0.05,
+      legend = c("Left", "Middle", "Right"),
+      text.font = 2:4,
+      palette = function (n) hcl.colors(n, "RdYlBu"),
+      bty = "n"
+    )
   })
 })
