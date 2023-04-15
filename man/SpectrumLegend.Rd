@@ -107,6 +107,12 @@ SizeLegend(
   palette = viridisLite::plasma, # Associate with a colour scale
   y.intersp = 1.5 # Vertical space between labels (also moves title)
 )
+SizeLegend(
+  "bottom", horiz = TRUE, width = c(4, 1),
+  legend = c("Thick", "Thin"), palette = "darkred",
+  inset = 0.06 # Make space for the bar.
+               # A future release may calculate this automatically
+)
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

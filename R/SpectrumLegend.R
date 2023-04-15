@@ -85,7 +85,7 @@ SpectrumLegend <- function(x = "topright", ...,
     barSpace <- yc
     yEnds <- textXY$y[c(1, 1)] - barSpace
 
-    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # not plotting lines
+    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # as not plotting lines
     lgd$rect$top <- lgd$rect$top
     lgd$rect$h <- lgd$rect$h + barSpace
 
@@ -132,6 +132,12 @@ SpectrumLegend <- function(x = "topright", ...,
 #'   palette = viridisLite::plasma, # Associate with a colour scale
 #'   y.intersp = 1.5 # Vertical space between labels (also moves title)
 #' )
+#' SizeLegend(
+#'   "bottom", horiz = TRUE, width = c(4, 1),
+#'   legend = c("Thick", "Thin"), palette = "darkred",
+#'   inset = 0.06 # Make space for the bar.
+#'                # A future release may calculate this automatically
+#' )
 #' @export
 SizeLegend <- function(x = "topright", ...,
                        legend = character(0),
@@ -161,6 +167,10 @@ SizeLegend <- function(x = "topright", ...,
   if (missing(seg.len)) {
     seg.len <- max(lwd) / lwdToPch / 2
   }
+  if (horiz) {
+    yc <- Cex * xyc[2L]
+    barSpace <- yc * (seg.len + 1)
+  }
 
   lgd <- legend(x = x,
                 legend = legend,
@@ -168,20 +178,18 @@ SizeLegend <- function(x = "topright", ...,
                 adj = adj,
                 cex = cex,
                 bty = ifelse(horiz, "n", bty),
-                lty = 1, ncol = 1,
+                lty = if (horiz) 0 else 1, ncol = 1,
                 col = par("bg"),
-                seg.len = seg.len,
+                seg.len = if (horiz) 0 else seg.len,
                 ...)
   textXY <- lgd$text
 
 
   if (horiz) {
     xEnds <- range(textXY$x)
-    yc <- Cex * xyc[2L]
-    barSpace <- (0.3 + 0.7) * yc
-    yEnds <- textXY$y[c(1, 1)] - barSpace
+    yEnds <- textXY$y[c(1, 1)] - yc - (yc * seg.len / 2)
 
-    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # not plotting lines
+    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # as not plotting lines
     lgd$rect$top <- lgd$rect$top
     lgd$rect$h <- lgd$rect$h + barSpace
 
