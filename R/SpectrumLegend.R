@@ -189,7 +189,6 @@ SizeLegend <- function(x = "topright", ...,
     xEnds <- range(textXY$x)
     yEnds <- textXY$y[c(1, 1)] - yc - (yc * seg.len / 2)
 
-    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # as not plotting lines
     lgd$rect$top <- lgd$rect$top
     lgd$rect$h <- lgd$rect$h + barSpace
 
