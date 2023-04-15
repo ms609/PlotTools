@@ -11,7 +11,7 @@ test_that("SpectrumLegend()", {
     SpectrumLegend(x = "bottomleft", inset = 0.05,
                    legend = c("Top", "~", "Middle", "", "Bottom"),
                    lwd = 5,
-                   palette = hcl.colors(256L, "RdYlBu"),
+                   palette = function (n) hcl.colors(n, "RdYlBu"),
                    text.col = c("blue", "grey", "brown", "grey", "red"),
                    title = "Big blue title", title.font = 3, title.cex = 1.5)
     SpectrumLegend(x = 0.4, y = 11.0, x.intersp = 2, horiz = TRUE,
@@ -33,24 +33,29 @@ test_that("SizeLegend()", {
          xlab = "x", ylab = "y")
 
     SizeLegend(x = "bottomleft", inset = 0.05,
-               legend = c("Wide", "", "Middle", "", "Narrow"),
-               width = c(1, 5),
-               col = "darkblue",
+               legend = c("Narrow", "", "Middle", "", "Wide"),
+               width = c(5, 1),
+               palette = "darkblue",
                title = "Big blue title", title.font = 3, title.cex = 1.5,
-               text.col = c("blue", "brown", "red"),
+               text.col = c("blue", "grey", "brown", "darkgrey", "red"),
                xpd = NA)
-    expect_warning(SizeLegend(x = 0.4, y = 11,
-               legend = seq(0, 10, by = 2),
-               width = 12,
+    big <- 12
+    expect_warning(val <- SizeLegend(x = 0.4, y = 11,
+               legend = seq(10, 0, by = -2),
+               width = big,
                scale = "pch",
-               col = "#cccccc88",
+               palette = rainbow,
                lty = "dotted",
                box.lty = "dashed", box.lwd = 2,
                box.col = "darkred",
+               y.intersp = 2,
                # bg = "#eeddcc", # TODO - see SpectrumLegend above
                lend = "round",
                title = "Multi-\nline\ntitle", xpd = NA),
                "length two")
-    points(0.2, 11, pch = 1, cex = 12, col = "green")
+
+    xc <- xyinch(par("cin"))[1]
+    points(val$text$x[1] - xc - (xc * (big / 4)), val$text$y[1],
+           pch = 1, cex = big, col = "darkgreen")
   })
 })

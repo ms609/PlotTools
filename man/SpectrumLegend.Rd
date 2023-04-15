@@ -25,13 +25,11 @@ SizeLegend(
   ...,
   legend = character(0),
   width = c(0, 1),
-  palette = "black",
+  palette = par("col"),
   scale = c("pch", "lwd"),
   lty = 0,
   lwd = 4,
   bty = "o",
-  col = par("col"),
-  text.col = par("col"),
   adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
   horiz = FALSE,
   lend = "butt",
@@ -66,8 +64,6 @@ and top.}
 \code{"lwd"}, the width of a line with \code{lwd = 1}.}
 
 \item{col}{Colour used for the width bar.}
-
-\item{text.col}{Colour used for the legend text.}
 }
 \value{
 A list, returned invisibly, with components:
@@ -107,7 +103,8 @@ SpectrumLegend("bottom", horiz = TRUE,
 SizeLegend(
   "topleft", inset = 0.05, width = c(0, 2),
   title = "Width",
-  legend = c("min", ".", ".", "max"),
+  legend = c("max", ".", ".", "min"),
+  palette = viridisLite::plasma, # Associate with a colour scale
   y.intersp = 1.5 # Vertical space between labels (also moves title)
 )
 }

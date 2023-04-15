@@ -21,7 +21,6 @@
 #' @param cex Character expansion factor relative to current `par("cex")`.
 #' @param bty Character specifying the type of box to be drawn around the
 #' legend. The allowed values are `"o"` (the default) and `"n"`.
-#' @param text.col Colour used for the legend text.
 #' @param x,horiz,adj,seg.len,\dots Additional parameters to [`legend()`].
 #'
 #' @returns A list, returned invisibly, with components:
@@ -129,19 +128,18 @@ SpectrumLegend <- function(x = "topright", ...,
 #' SizeLegend(
 #'   "topleft", inset = 0.05, width = c(0, 2),
 #'   title = "Width",
-#'   legend = c("min", ".", ".", "max"),
+#'   legend = c("max", ".", ".", "min"),
+#'   palette = viridisLite::plasma, # Associate with a colour scale
 #'   y.intersp = 1.5 # Vertical space between labels (also moves title)
 #' )
 #' @export
 SizeLegend <- function(x = "topright", ...,
                        legend = character(0),
                        width = c(0, 1),
-                       palette = "black",
+                       palette = par("col"),
                        scale = c("pch", "lwd"),
                        lty = 0, lwd = 4,
                        bty = "o",
-                       col = par("col"),
-                       text.col = par("col"),
                        adj = if(horiz) c(0.5, 0.5) else c(0, 0.5),
                        horiz = FALSE,
                        lend = "butt",
@@ -153,7 +151,7 @@ SizeLegend <- function(x = "topright", ...,
     warning("`width` should be a vector of length two")
     width <- c(0, width)
   }
-  lwdToPch <- 100 / 14
+  lwdToPch <- 7.18
   lineScale <- switch(pmatch(tolower(scale[1]), c("pch", "lwd")), lwdToPch, 1)
   lwd <- lineScale * width
 
@@ -201,7 +199,11 @@ SizeLegend <- function(x = "topright", ...,
     yEnds <- range(textXY$y)
   }
 
-  resolution <- 100
+  if (is.function(palette)) {
+    palette <- palette(256)
+  }
+  nCol <- length(palette)
+  resolution <- if (nCol > 1) nCol else 100
   segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:resolution / resolution)
   segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:resolution / resolution)
 
@@ -209,7 +211,7 @@ SizeLegend <- function(x = "topright", ...,
   nPlus1 <- resolution + 1L
   segments(segX[-nPlus1], segY[-nPlus1],
            segX[-1], segY[-1],
-           col = col,
+           col = palette,
 
            lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend)
 
