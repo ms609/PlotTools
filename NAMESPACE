@@ -2,8 +2,9 @@
 
 export(SizeLegend)
 export(SpectrumLegend)
+importFrom(grDevices,xy.coords)
+importFrom(graphics,legend)
 importFrom(graphics,par)
+importFrom(graphics,rect)
 importFrom(graphics,segments)
-importFrom(graphics,strheight)
-importFrom(graphics,strwidth)
-importFrom(graphics,text)
+importFrom(graphics,xyinch)

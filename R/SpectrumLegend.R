@@ -5,91 +5,120 @@
 #' This convenience function is not yet very customizable; do file a GitHub
 #' issue if you would value additional functionality.
 #'
-#' @param x0,y0,x1,y1 Coordinates of the bottom-left and top-right end of the
-#' bar.
-#' @param absolute Logical specifying whether `x` and `y` values denote
-#' coordinates (`TRUE`) or relative position, where (0, 0) denotes the
-#' bottom-left of the plot area and (1, 1) the top right.
+#' Note that the `bg` parameter to specify the background colour for the legend
+#' box is not presently supported in vertical legends.
+#' For use in vertical legends, open a [GitHub issue](
+#' https://github.com/ms609/PlotTools/issues/new).
+#'
 #' @param legend Character vector with which to label points on `palette`.
+#' Note that, in a vertical legend, values will be printed from top down;
+#' use [`rev()`] to reverse the order.
 #' @param palette Colour palette to depict.
+#' Specify either a vector of colours, or a function such that `palette(n)`
+#' returns a vector of _n_ colours.
 #' @param lwd,lty,lend Additional parameters to [`segments()`],
 #' controlling line style.
 #' @param cex Character expansion factor relative to current `par("cex")`.
-#' @param text.col Colour used for the legend text.
-#' @param font,text.font Font used for the legend text; see [`text()`].
-#' @param title Text to display
-#' @param title.col Colour for title; defaults to `text.col[1]`.
-#' @param title.cex Expansion factor(s) for the title, defaults to `cex[1]`.
-#' @param title.adj Horizontal adjustment for title: see the help for
-#' `par("adj")`.
-#' @param title.font Font used for the legend title.
-#' @param pos,\dots Additional parameters to [`text()`].
+#' @param bty Character specifying the type of box to be drawn around the
+#' legend. The allowed values are `"o"` (the default) and `"n"`.
+#' @param x,horiz,adj,seg.len,\dots Additional parameters to [`legend()`].
+#'
+#' @returns A list, returned invisibly, with components:
+#' - `rect` A list with components:
+#'   - `w`, `h`: positive numbers giving *w*idth and *h*eight of the
+#'     legend's box.
+#'   - `left`, `top`: x and y coordinates of the upper left corner of the
+#'     box.
+#' - `text`: A list with components `x`, `y`, numeric vectors of length
+#'   `length(legend)`, giving the x and y coordinates of the legend's text(s).
 #'
 #' @examples
 #' plot(0:1, 0:1, type = "n", frame.plot = FALSE,
 #'      xlab = "x", ylab = "y")
-#' SpectrumLegend(legend = c("Dark", "Middle", "Bright"),
+#'
+#' SpectrumLegend("bottomright", legend = c("Bright", "Middle", "Dark"),
 #'                palette = hcl.colors(32L), lwd = 5,
+#'                inset = 0.05, # Inset from plot margin
 #'                title = "Brightness")
-#' SpectrumLegend(0.4, 0.95, 0.9, 0.95, abs = TRUE,
-#'                legend = seq(1, 9, by = 2), palette = 1:8, pos = 1)
+#' SpectrumLegend("topright", horiz = TRUE,
+#'                legend = seq(1, 9, by = 2), palette = 1:8)
 #' @template MRS
-#' @importFrom graphics par segments strheight strwidth text
+#' @importFrom graphics legend par rect segments xyinch
+#' @importFrom grDevices xy.coords
 #' @export
-SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
-                           x1 = x0, y1 = y0 + 0.2,
-                           absolute = FALSE,
-                           legend = character(0), palette,
-                           lwd = 4, lty = 1,
-                           lend = "square", cex = 1,
-                           text.col = par("col"),
-                           font = NULL, text.font = font,
-                           title = NULL, title.col = text.col[1],
-                           title.cex = cex[1],
-                           title.adj = 0.5,
-                           title.font = text.font[1],
-                           pos = 4,
-                           ...) {
+SpectrumLegend <- function(x = "topright", ...,
+                           legend,
+                           lty = 1, lwd = 4,
+                           bty = "o",
+                           palette,
+                           adj = if(horiz) c(0.5, 0.5) else c(0, 0.5),
+                           horiz = FALSE,
+                           lend = "square",
+                           cex = 1,
+                           seg.len = 1
+                           ) {
+  if (is.function(palette)) {
+    palette <- palette(256)
+  }
   nCol <- length(palette)
-
-  if (!absolute) {
-    corners <- par("usr") # x0 x1 y0 y1
-    xRange <- corners[2] - corners[1]
-    yRange <- corners[4] - corners[3]
-
-    # Order is important: lazy evaluation will set x1 = modified x0
-    x1 <- corners[1] + (x1 * xRange)
-    x0 <- corners[1] + (x0 * xRange)
-    y1 <- corners[3] + (y1 * yRange)
-    y0 <- corners[3] + (y0 * yRange)
+  if (nCol < 1) {
+    stop("palette has length zero")
   }
 
-  segX <- x0 + ((x1 - x0) * 0:nCol / nCol)
-  segY <- y0 + ((y1 - y0) * 0:nCol / nCol)
+  lgd <- legend(x = x,
+                legend = legend,
+                horiz = horiz,
+                adj = adj,
+                cex = cex,
+                bty = ifelse(horiz, "n", bty),
+                lty = 0, ncol = 1,
+                seg.len = seg.len,
+                ...)
+  textXY <- lgd$text
+
+  Cex <- cex * par("cex")
+  xyc <- xyinch(par("cin"), warn.log = FALSE)
+
+  if (horiz) {
+    xEnds <- range(textXY$x)
+    yc <- Cex * xyc[2L]
+    barSpace <- yc
+    yEnds <- textXY$y[c(1, 1)] - barSpace
+
+    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # as not plotting lines
+    lgd$rect$top <- lgd$rect$top
+    lgd$rect$h <- lgd$rect$h + barSpace
+
+    if (bty == "o") {
+      box <- lgd$rect
+      dots <- list(...)
+      rect(box$left, box$top - box$h,
+           box$left + box$w, box$top,
+           # col = dots$bg, # TODO not supported - overprints text
+           lwd = dots$box.lwd, lty = dots$box.lty,
+           border = dots$box.col)
+    }
+  } else {
+    xc <- Cex * xyc[1L]
+    xEnds <- textXY$x[c(1, 1)] - xc - (xc * seg.len / 2)
+    yEnds <- range(textXY$y)
+  }
+
+  segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:nCol / nCol)
+  segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:nCol / nCol)
 
   nPlus1 <- nCol + 1L
+  # Create overlap to avoid hairline gaps in SVG render
+  epsilon <- 0.004
+  epsX <- abs(segX[nPlus1] - segX[1]) * epsilon
+  epsY <- abs(segY[nPlus1] - segY[1]) * epsilon
   segments(segX[-nPlus1], segY[-nPlus1],
-           segX[-1], segY[-1],
+           segX[-1] + epsX, segY[-1] + epsY,
            col = palette,
-           lwd = lwd, lty = lty, lend = lend,
-           ...)
-  text(seq(x0, x1, length.out = length(legend)),
-       seq(y0, y1, length.out = length(legend)),
-       col = text.col,
-       cex = cex,
-       font = text.font,
-       legend, pos = pos, ...)
-  if (!is.null(title)) {
-    text(mean(x0, x1) + (max(strwidth(legend)) / ifelse(pos == 2, -2, 2)),
-         max(y0, y1) + prod(
-           par("lheight"),
-           strheight("")
-         ),
-         title,
-         pos = 3,
-         cex = title.cex, adj = title.adj, font = title.font, col = title.col,
-         ...)
-  }
+           lwd = lwd, lty = lty, lend = lend)
+
+  # Return:
+  invisible(lgd)
 }
 
 #' @rdname SpectrumLegend
@@ -100,69 +129,107 @@ SpectrumLegend <- function(x0 = 0.05, y0 = 0.05,
 #' `"lwd"`, the width of a line with `lwd = 1`.
 #' @param col Colour used for the width bar.
 #' @examples
-#' SizeLegend(0.8, title = "Width", legend = c("min", "max"))
+#' SizeLegend(
+#'   "topleft", inset = 0.05, width = c(0, 2),
+#'   title = "Width",
+#'   legend = c("max", ".", ".", "min"),
+#'   palette = topo.colors, # Associate with a colour scale
+#'   y.intersp = 1.5 # Vertical space between labels (also moves title)
+#' )
+#' SizeLegend(
+#'   "bottomleft", horiz = TRUE, width = c(4, 1),
+#'   legend = c("Thick", "Thin"), palette = "darkred",
+#'   inset = 0.06 # Make space for the bar.
+#'                # A future release may calculate this automatically
+#' )
 #' @export
-SizeLegend <- function(x0 = 0.05, y0 = 0.05,
-                       x1 = x0, y1 = y0 + 0.2,
-                       absolute = FALSE,
+SizeLegend <- function(x = "topright", ...,
                        legend = character(0),
                        width = c(0, 1),
+                       palette = par("col"),
                        scale = c("pch", "lwd"),
-                       lend = "square",
+                       lty = 0, lwd = 4,
+                       bty = "o",
+                       adj = if(horiz) c(0.5, 0.5) else c(0, 0.5),
+                       horiz = FALSE,
+                       lend = "butt",
                        cex = 1,
-                       col = par("col"),
-                       text.col = par("col"),
-                       font = NULL, text.font = font,
-                       title = NULL, title.col = text.col[1],
-                       title.cex = cex[1],
-                       title.adj = 0.5,
-                       title.font = text.font[1],
-                       pos = 4,
-                       ...) {
+                       seg.len
+) {
 
-  if (!absolute) {
-    corners <- par("usr") # x0 x1 y0 y1
-    xRange <- corners[2] - corners[1]
-    yRange <- corners[4] - corners[3]
-
-    # Order is important: lazy evaluation will set x1 = modified x0
-    x1 <- corners[1] + (x1 * xRange)
-    x0 <- corners[1] + (x0 * xRange)
-    y1 <- corners[3] + (y1 * yRange)
-    y0 <- corners[3] + (y0 * yRange)
-  }
-
-  resolution <- 100
-  segX <- x0 + ((x1 - x0) * 0:resolution / resolution)
-  segY <- y0 + ((y1 - y0) * 0:resolution / resolution)
   if (length(width) < 2) {
     warning("`width` should be a vector of length two")
     width <- c(0, width)
   }
-  lwd <- switch(pmatch(tolower(scale[1]), c("pch", "lwd")),
-                100 / 14, 1) * width
+  lwdToPch <- 7.18
+  lineScale <- switch(pmatch(tolower(scale[1]), c("pch", "lwd")), lwdToPch, 1)
+  lwd <- lineScale * width
+
+  Cex <- cex * par("cex")
+  xyc <- xyinch(par("cin"), warn.log = FALSE)
+  xchar <- Cex * xyc[1L]
+  if (missing(seg.len)) {
+    seg.len <- max(lwd) / lwdToPch / 2
+  }
+  if (horiz) {
+    yc <- Cex * xyc[2L]
+    barSpace <- yc * (seg.len + 1)
+  }
+
+  lgd <- legend(x = x,
+                legend = legend,
+                horiz = horiz,
+                adj = adj,
+                cex = cex,
+                bty = ifelse(horiz, "n", bty),
+                lty = if (horiz) 0 else 1, ncol = 1,
+                col = par("bg"),
+                seg.len = if (horiz) 0 else seg.len,
+                ...)
+  textXY <- lgd$text
+
+
+  if (horiz) {
+    xEnds <- range(textXY$x)
+    yEnds <- textXY$y[c(1, 1)] - yc - (yc * seg.len / 2)
+
+    lgd$rect$top <- lgd$rect$top
+    lgd$rect$h <- lgd$rect$h + barSpace
+
+    if (bty == "o") {
+      box <- lgd$rect
+      dots <- list(...)
+      rect(box$left, box$top - box$h,
+           box$left + box$w, box$top,
+           # col = dots$bg, # TODO not supported - overprints text
+           lwd = dots$box.lwd, lty = dots$box.lty,
+           border = dots$box.col)
+    }
+  } else {
+    xEnds <- textXY$x[c(1, 1)] - xchar - (xchar * seg.len / 2)
+    yEnds <- range(textXY$y)
+  }
+
+  if (is.function(palette)) {
+    palette <- palette(256)
+  }
+  nCol <- length(palette)
+  resolution <- if (nCol > 1) nCol else 256
+  segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:resolution / resolution)
+  segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:resolution / resolution)
+
 
   nPlus1 <- resolution + 1L
+  # Create overlap to avoid hairline gaps in SVG render
+  epsilon <- 0.004
+  epsX <- abs(segX[nPlus1] - segX[1]) * epsilon
+  epsY <- abs(segY[nPlus1] - segY[1]) * epsilon
   segments(segX[-nPlus1], segY[-nPlus1],
-           segX[-1], segY[-1],
-           col = col,
-           lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend,
-           ...)
-  text(seq(x0, x1, length.out = length(legend)),
-       seq(y0, y1, length.out = length(legend)),
-       col = text.col,
-       cex = cex,
-       font = text.font,
-       legend, pos = pos, ...)
-  if (!is.null(title)) {
-    text(mean(x0, x1) + (max(strwidth(legend)) / ifelse(pos == 2, -2, 2)),
-         max(y0, y1) + prod(
-           par("lheight"),
-           strheight("")
-         ),
-         title,
-         pos = 3,
-         cex = title.cex, adj = title.adj, font = title.font, col = title.col,
-         ...)
-  }
+           segX[-1] + epsX, segY[-1] + epsY,
+           col = palette,
+
+           lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend)
+
+  # Return:
+  invisible(lgd)
 }
