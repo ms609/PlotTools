@@ -108,8 +108,12 @@ SpectrumLegend <- function(x = "topright", ...,
   segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:nCol / nCol)
 
   nPlus1 <- nCol + 1L
+  # Create overlap to avoid hairline gaps in SVG render
+  epsilon <- 0.004
+  epsX <- abs(segX[nPlus1] - segX[1]) * epsilon
+  epsY <- abs(segY[nPlus1] - segY[1]) * epsilon
   segments(segX[-nPlus1], segY[-nPlus1],
-           segX[-1], segY[-1],
+           segX[-1] + epsX, segY[-1] + epsY,
            col = palette,
            lwd = lwd, lty = lty, lend = lend)
 
@@ -210,14 +214,18 @@ SizeLegend <- function(x = "topright", ...,
     palette <- palette(256)
   }
   nCol <- length(palette)
-  resolution <- if (nCol > 1) nCol else 100
+  resolution <- if (nCol > 1) nCol else 256
   segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:resolution / resolution)
   segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:resolution / resolution)
 
 
   nPlus1 <- resolution + 1L
+  # Create overlap to avoid hairline gaps in SVG render
+  epsilon <- 0.004
+  epsX <- abs(segX[nPlus1] - segX[1]) * epsilon
+  epsY <- abs(segY[nPlus1] - segY[1]) * epsilon
   segments(segX[-nPlus1], segY[-nPlus1],
-           segX[-1], segY[-1],
+           segX[-1] + epsX, segY[-1] + epsY,
            col = palette,
 
            lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend)
