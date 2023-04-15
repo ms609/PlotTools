@@ -11,7 +11,7 @@ test_that("SpectrumLegend()", {
     SpectrumLegend(x = "bottomleft", inset = 0.05,
                    legend = c("Top", "~", "Middle", "", "Bottom"),
                    lwd = 5,
-                   palette = function (n) hcl.colors(n, "RdYlBu"),
+                   palette = function(n) hcl.colors(n, "RdYlBu"),
                    text.col = c("blue", "grey", "brown", "grey", "red"),
                    title = "Big blue title", title.font = 3, title.cex = 1.5)
     SpectrumLegend(x = 0.4, y = 11.0, x.intersp = 2, horiz = TRUE,
@@ -73,7 +73,7 @@ test_that("Horizontal SizeLegend()", {
       x = "top", inset = 0.05,
       title = "Horizontal",
       legend = c("Left", "Middle", "Right"),
-      palette = function (n) hcl.colors(n, "RdYlBu"),
+      palette = function(n) hcl.colors(n, "RdYlBu"),
       text.col = c("blue", "brown", "red")
     )
 
@@ -82,7 +82,7 @@ test_that("Horizontal SizeLegend()", {
       x = "bottom", inset = 0.05,
       legend = c("Left", "Middle", "Right"),
       text.font = 2:4,
-      palette = function (n) hcl.colors(n, "RdYlBu"),
+      palette = function(n) hcl.colors(n, "RdYlBu"),
       bty = "n"
     )
   })
