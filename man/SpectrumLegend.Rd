@@ -94,21 +94,21 @@ For use in vertical legends, open a \href{https://github.com/ms609/PlotTools/iss
 plot(0:1, 0:1, type = "n", frame.plot = FALSE,
      xlab = "x", ylab = "y")
 
-SpectrumLegend("topright", legend = c("Bright", "Middle", "Dark"),
+SpectrumLegend("bottomright", legend = c("Bright", "Middle", "Dark"),
                palette = hcl.colors(32L), lwd = 5,
-               title = "Brightness")
-SpectrumLegend("bottom", horiz = TRUE,
                inset = 0.05, # Inset from plot margin
+               title = "Brightness")
+SpectrumLegend("topright", horiz = TRUE,
                legend = seq(1, 9, by = 2), palette = 1:8)
 SizeLegend(
   "topleft", inset = 0.05, width = c(0, 2),
   title = "Width",
   legend = c("max", ".", ".", "min"),
-  palette = viridisLite::plasma, # Associate with a colour scale
+  palette = topo.colors, # Associate with a colour scale
   y.intersp = 1.5 # Vertical space between labels (also moves title)
 )
 SizeLegend(
-  "bottom", horiz = TRUE, width = c(4, 1),
+  "bottomleft", horiz = TRUE, width = c(4, 1),
   legend = c("Thick", "Thin"), palette = "darkred",
   inset = 0.06 # Make space for the bar.
                # A future release may calculate this automatically
