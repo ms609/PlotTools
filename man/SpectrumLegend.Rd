@@ -25,16 +25,18 @@ SizeLegend(
   ...,
   legend = character(0),
   width = c(0, 1),
+  palette = "black",
   scale = c("pch", "lwd"),
-  lty = 1,
+  lty = 0,
   lwd = 4,
   bty = "o",
   col = par("col"),
   text.col = par("col"),
   adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
   horiz = FALSE,
-  lend = "square",
-  cex = 1
+  lend = "butt",
+  cex = 1,
+  seg.len
 )
 }
 \arguments{
@@ -50,7 +52,9 @@ controlling line style.}
 \item{bty}{Character specifying the type of box to be drawn around the
 legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}
 
-\item{palette}{Colour palette to depict.}
+\item{palette}{Colour palette to depict.
+Specify either a vector of colours, or a function such that \code{palette(n)}
+returns a vector of \emph{n} colours.}
 
 \item{cex}{Character expansion factor relative to current \code{par("cex")}.}
 
@@ -100,7 +104,12 @@ SpectrumLegend("topright", legend = c("Bright", "Middle", "Dark"),
 SpectrumLegend("bottom", horiz = TRUE,
                inset = 0.05, # Inset from plot margin
                legend = seq(1, 9, by = 2), palette = 1:8)
-SizeLegend(0.8, title = "Width", legend = c("min", "max"))
+SizeLegend(
+  "topleft", inset = 0.05, width = c(0, 2),
+  title = "Width",
+  legend = c("min", ".", ".", "max"),
+  y.intersp = 1.5 # Vertical space between labels (also moves title)
+)
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

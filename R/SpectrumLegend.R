@@ -14,6 +14,8 @@
 #' Note that, in a vertical legend, values will be printed from top down;
 #' use [`rev()`] to reverse the order.
 #' @param palette Colour palette to depict.
+#' Specify either a vector of colours, or a function such that `palette(n)`
+#' returns a vector of _n_ colours.
 #' @param lwd,lty,lend Additional parameters to [`segments()`],
 #' controlling line style.
 #' @param cex Character expansion factor relative to current `par("cex")`.
@@ -56,6 +58,9 @@ SpectrumLegend <- function(x = "topright", ...,
                            cex = 1,
                            seg.len = 1
                            ) {
+  if (is.function(palette)) {
+    palette <- palette(256)
+  }
   nCol <- length(palette)
   if (nCol < 1) {
     stop("palette has length zero")
@@ -121,33 +126,56 @@ SpectrumLegend <- function(x = "topright", ...,
 #' `"lwd"`, the width of a line with `lwd = 1`.
 #' @param col Colour used for the width bar.
 #' @examples
-#' SizeLegend(0.8, title = "Width", legend = c("min", "max"))
+#' SizeLegend(
+#'   "topleft", inset = 0.05, width = c(0, 2),
+#'   title = "Width",
+#'   legend = c("min", ".", ".", "max"),
+#'   y.intersp = 1.5 # Vertical space between labels (also moves title)
+#' )
 #' @export
 SizeLegend <- function(x = "topright", ...,
                        legend = character(0),
                        width = c(0, 1),
+                       palette = "black",
                        scale = c("pch", "lwd"),
-                       lty = 1, lwd = 4,
+                       lty = 0, lwd = 4,
                        bty = "o",
                        col = par("col"),
                        text.col = par("col"),
                        adj = if(horiz) c(0.5, 0.5) else c(0, 0.5),
                        horiz = FALSE,
-                       lend = "square",
-                       cex = 1
+                       lend = "butt",
+                       cex = 1,
+                       seg.len
 ) {
+
+  if (length(width) < 2) {
+    warning("`width` should be a vector of length two")
+    width <- c(0, width)
+  }
+  lwdToPch <- 100 / 14
+  lineScale <- switch(pmatch(tolower(scale[1]), c("pch", "lwd")), lwdToPch, 1)
+  lwd <- lineScale * width
+
+  Cex <- cex * par("cex")
+  xyc <- xyinch(par("cin"), warn.log = FALSE)
+  xchar <- Cex * xyc[1L]
+  if (missing(seg.len)) {
+    seg.len <- max(lwd) / lwdToPch / 2
+  }
+
   lgd <- legend(x = x,
                 legend = legend,
                 horiz = horiz,
                 adj = adj,
                 cex = cex,
                 bty = ifelse(horiz, "n", bty),
-                lty = 0, ncol = 1,
+                lty = 1, ncol = 1,
+                col = par("bg"),
+                seg.len = seg.len,
                 ...)
   textXY <- lgd$text
 
-  Cex <- cex * par("cex")
-  xyc <- xyinch(par("cin"), warn.log = FALSE)
 
   if (horiz) {
     xEnds <- range(textXY$x)
@@ -169,8 +197,7 @@ SizeLegend <- function(x = "topright", ...,
            border = dots$box.col)
     }
   } else {
-    xc <- Cex * xyc[1L]
-    xEnds <- textXY$x[c(1, 1)] - (0.7 * xc) # 0.7 from legend
+    xEnds <- textXY$x[c(1, 1)] - xchar - (xchar * seg.len / 2)
     yEnds <- range(textXY$y)
   }
 
@@ -178,17 +205,12 @@ SizeLegend <- function(x = "topright", ...,
   segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:resolution / resolution)
   segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:resolution / resolution)
 
-  if (length(width) < 2) {
-    warning("`width` should be a vector of length two")
-    width <- c(0, width)
-  }
-  lwd <- switch(pmatch(tolower(scale[1]), c("pch", "lwd")),
-                100 / 14, 1) * width
 
   nPlus1 <- resolution + 1L
   segments(segX[-nPlus1], segY[-nPlus1],
            segX[-1], segY[-1],
            col = col,
+
            lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend)
 
   # Return:
