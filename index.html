@@ -83,11 +83,50 @@
 <div class="page-header"><h1 id="plottools">PlotTools<a class="anchor" aria-label="anchor" href="#plottools"></a>
 </h1></div>
 <p><a href="https://www.repostatus.org/#project-statuses" class="external-link"><img src="https://www.repostatus.org/badges/latest/inactive.svg" alt="Project Status: Inactive."></a> <a href="https://app.codecov.io/gh/ms609/PlotTools" class="external-link"><img src="https://codecov.io/gh/ms609/PlotTools/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://cran.r-project.org/package=PlotTools" class="external-link"><img src="https://www.r-pkg.org/badges/version/PlotTools" alt="CRAN Status Badge"></a> <a href="https://cran.r-project.org/package=PlotTools" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/PlotTools" alt="CRAN Downloads"></a> <a href="https://doi.org/10.5281/zenodo.7803390" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7803390.svg" alt="DOI"></a></p>
-<p>‘PlotTools’ is an R package that allows the addition of labels for continuous variable son plots created using the familiar functions of the default ‘graphics’ package.</p>
-<p>Install the development version from GitHub with</p>
+<p>‘PlotTools’ is an R package that allows the legends for continuous variables to be added to plots using the familiar functions of the default ‘graphics’ package.</p>
+<p>Install the latest production version from CRAN using</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"PlotTools"</span><span class="op">)</span></span></code></pre></div>
+<p>or install the development version from GitHub with</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ms609/PlotTools"</span><span class="op">)</span></span></code></pre></div>
 <p>Please let me know of any feature requests or bugs by <a href="https://github.com/ms609/PlotTools/issues/" class="external-link">opening an issue on GitHub</a>.</p>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">palette</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"grDevices"</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">3.6</span><span class="op">)</span> <span class="va">hcl.colors</span> <span class="kw">else</span> <span class="va">heat.colors</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span></span>
+<span>  <span class="va">cars</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Speed / mph"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Stopping distance / ft"</span>,</span>
+<span>  cex <span class="op">=</span> <span class="va">cars</span><span class="op">$</span><span class="va">speed</span> <span class="op">/</span> <span class="fl">10</span>,</span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palette.html" class="external-link">palette</a></span><span class="op">(</span><span class="fl">125</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">[</span><span class="va">cars</span><span class="op">$</span><span class="va">dist</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span>,</span>
+<span>  pch <span class="op">=</span> <span class="fl">16</span>, <span class="co"># Filled circle</span></span>
+<span>  frame.plot <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/SpectrumLegend.html">SpectrumLegend</a></span><span class="op">(</span></span>
+<span>  <span class="st">"topleft"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="va">palette</span>,</span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">125</span>, <span class="fl">0</span>, length.out <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Distance"</span>,</span>
+<span>  bty <span class="op">=</span> <span class="st">"n"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/SpectrumLegend.html">SizeLegend</a></span><span class="op">(</span></span>
+<span>  <span class="st">"bottomright"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"darkgrey"</span>,</span>
+<span>  horiz <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span><span class="op">)</span>, scale <span class="op">=</span> <span class="st">"pch"</span>,</span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  x.intersp <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  bty <span class="op">=</span> <span class="st">"n"</span>,</span>
+<span>  inset <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Speed"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="https://user-images.githubusercontent.com/1695515/232433317-85412267-8c01-41f9-96be-bfc71533d59b.png" alt=""><p class="caption">image</p>
+</div>
+</div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
