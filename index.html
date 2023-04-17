@@ -92,35 +92,42 @@
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ms609/PlotTools"</span><span class="op">)</span></span></code></pre></div>
 <p>Please let me know of any feature requests or bugs by <a href="https://github.com/ms609/PlotTools/issues/" class="external-link">opening an issue on GitHub</a>.</p>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="usage-example">Usage example<a class="anchor" aria-label="anchor" href="#usage-example"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">palette</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"grDevices"</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">3.6</span><span class="op">)</span> <span class="va">hcl.colors</span> <span class="kw">else</span> <span class="va">heat.colors</span></span>
+<code class="sourceCode R"><span><span class="co"># Select a palette</span></span>
+<span><span class="va">palette</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html" class="external-link">packageVersion</a></span><span class="op">(</span><span class="st">"grDevices"</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">3.6</span><span class="op">)</span> <span class="va">hcl.colors</span> <span class="kw">else</span> <span class="va">heat.colors</span></span>
+<span></span>
+<span><span class="co"># Plot some example data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span></span>
 <span>  <span class="va">cars</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Speed / mph"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Stopping distance / ft"</span>,</span>
-<span>  cex <span class="op">=</span> <span class="va">cars</span><span class="op">$</span><span class="va">speed</span> <span class="op">/</span> <span class="fl">10</span>,</span>
-<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palette.html" class="external-link">palette</a></span><span class="op">(</span><span class="fl">125</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">[</span><span class="va">cars</span><span class="op">$</span><span class="va">dist</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span>,</span>
-<span>  pch <span class="op">=</span> <span class="fl">16</span>, <span class="co"># Filled circle</span></span>
+<span>  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palette.html" class="external-link">palette</a></span><span class="op">(</span><span class="fl">125</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">[</span><span class="va">cars</span><span class="op">$</span><span class="va">dist</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span>, <span class="co"># Colour points by distance</span></span>
+<span>  cex <span class="op">=</span> <span class="va">cars</span><span class="op">$</span><span class="va">speed</span> <span class="op">/</span> <span class="fl">10</span>,                 <span class="co"># Size points by speed</span></span>
+<span>  pch <span class="op">=</span> <span class="fl">16</span>,                              <span class="co"># Use filled circle for points</span></span>
 <span>  frame.plot <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display legend for colour scale</span></span>
 <span><span class="fu">PlotTools</span><span class="fu">::</span><span class="fu"><a href="reference/SpectrumLegend.html">SpectrumLegend</a></span><span class="op">(</span></span>
-<span>  <span class="st">"topleft"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="va">palette</span>,</span>
-<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">125</span>, <span class="fl">0</span>, length.out <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,</span>
+<span>  <span class="st">"topleft"</span>,                             <span class="co"># Legend position</span></span>
+<span>  palette <span class="op">=</span> <span class="va">palette</span>,                     <span class="co"># Display our chosen palette</span></span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">125</span>, <span class="fl">0</span>, length.out <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>,  <span class="co"># Annotate positions on legend</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Distance"</span>,</span>
-<span>  bty <span class="op">=</span> <span class="st">"n"</span></span>
+<span>  bty <span class="op">=</span> <span class="st">"n"</span>                              <span class="co"># Don't frame with box</span></span>
 <span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Display legend for plotting symbol sizes</span></span>
 <span><span class="fu">PlotTools</span><span class="fu">::</span><span class="fu"><a href="reference/SpectrumLegend.html">SizeLegend</a></span><span class="op">(</span></span>
-<span>  <span class="st">"bottomright"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"darkgrey"</span>,</span>
-<span>  horiz <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span><span class="op">)</span>, scale <span class="op">=</span> <span class="st">"pch"</span>,</span>
-<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span>  x.intersp <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  bty <span class="op">=</span> <span class="st">"n"</span>,</span>
-<span>  inset <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  <span class="st">"bottomright"</span>,                         <span class="co"># Legend position</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"darkgrey"</span>,                  <span class="co"># Set colour - may be continuous</span></span>
+<span>  horiz <span class="op">=</span> <span class="cn">TRUE</span>,                          <span class="co"># Orient horizontally</span></span>
+<span>  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2.5</span><span class="op">)</span>, scale <span class="op">=</span> <span class="st">"pch"</span>,      <span class="co"># Scale for plotting character</span></span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,           <span class="co"># Annotate positions on legend</span></span>
+<span>  x.intersp <span class="op">=</span> <span class="fl">0</span>,                         <span class="co"># Set x spacing</span></span>
+<span>  bty <span class="op">=</span> <span class="st">"n"</span>,                             <span class="co"># Don't frame with box</span></span>
+<span>  inset <span class="op">=</span> <span class="fl">0.05</span>,                          <span class="co"># Inset from plot edges</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Speed"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
