@@ -1,6 +1,6 @@
 # PlotTools
 
-[![Project Status: Inactive.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#project-statuses)
+[![Project Status: Active.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#project-statuses)
 [![codecov](https://codecov.io/gh/ms609/PlotTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ms609/PlotTools)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/PlotTools)](https://cran.r-project.org/package=PlotTools)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/PlotTools)](https://cran.r-project.org/package=PlotTools)
