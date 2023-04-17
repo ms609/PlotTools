@@ -39,14 +39,14 @@ plot(
   pch = 16, # Filled circle
   frame.plot = FALSE
 )
-SpectrumLegend(
+PlotTools::SpectrumLegend(
   "topleft",
   palette = palette,
   legend = seq(125, 0, length.out = 6),
   title = "Distance",
   bty = "n"
 )
-SizeLegend(
+PlotTools::SizeLegend(
   "bottomright",
   palette = "darkgrey",
   horiz = TRUE,
