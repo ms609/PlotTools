@@ -26,10 +26,10 @@ devtools::install_github("ms609/PlotTools")
 Please let me know of any feature requests or bugs by [opening an 
 issue on GitHub](https://github.com/ms609/PlotTools/issues/).
 
-## Usage example
+## Usage
 
 ```r
-# Select a palette
+# Select a colour palette
 palette <- if (packageVersion("grDevices") > 3.6) hcl.colors else heat.colors
 
 # Plot some example data
@@ -76,6 +76,8 @@ Smith, Martin R. (2023). _PlotTools: Add continuous legends to plots._
 Comprehensive R Archive Network, 
 [doi:10.5281/zenodo.7803390](https://dx.doi.org/10.5281/zenodo.7803390).
 
+
+## Contribute
 
 Please note that the 'PlotTools' project is released with a
 [Contributor Code of Conduct](https://ms609.github.io/packages/CODE_OF_CONDUCT.html).
