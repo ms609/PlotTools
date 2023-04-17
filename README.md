@@ -26,35 +26,42 @@ devtools::install_github("ms609/PlotTools")
 Please let me know of any feature requests or bugs by [opening an 
 issue on GitHub](https://github.com/ms609/PlotTools/issues/).
 
-## Example
+## Usage example
 
 ```r
+# Select a palette
 palette <- if (packageVersion("grDevices") > 3.6) hcl.colors else heat.colors
+
+# Plot some example data
 plot(
   cars,
   xlab = "Speed / mph",
   ylab = "Stopping distance / ft",
-  cex = cars$speed / 10,
-  col = palette(125 + 1)[cars$dist + 1],
-  pch = 16, # Filled circle
+  col = palette(125 + 1)[cars$dist + 1], # Colour points by distance
+  cex = cars$speed / 10,                 # Size points by speed
+  pch = 16,                              # Use filled circle for points
   frame.plot = FALSE
 )
+
+# Display legend for colour scale
 PlotTools::SpectrumLegend(
-  "topleft",
-  palette = palette,
-  legend = seq(125, 0, length.out = 6),
+  "topleft",                             # Legend position
+  palette = palette,                     # Display our chosen palette
+  legend = seq(125, 0, length.out = 6),  # Annotate positions on legend
   title = "Distance",
-  bty = "n"
+  bty = "n"                              # Don't frame with box
 )
+
+# Display legend for plotting symbol sizes
 PlotTools::SizeLegend(
-  "bottomright",
-  palette = "darkgrey",
-  horiz = TRUE,
-  width = c(0, 2.5), scale = "pch",
-  legend = seq(0, 25, by = 5),
-  x.intersp = 0,
-  bty = "n",
-  inset = 0.05,
+  "bottomright",                         # Legend position
+  palette = "darkgrey",                  # Set colour - may be continuous
+  horiz = TRUE,                          # Orient horizontally
+  width = c(0, 2.5), scale = "pch",      # Scale for plotting character
+  legend = seq(0, 25, by = 5),           # Annotate positions on legend
+  x.intersp = 0,                         # Set x spacing
+  bty = "n",                             # Don't frame with box
+  inset = 0.05,                          # Inset from plot edges
   title = "Speed"
 )
 ```
