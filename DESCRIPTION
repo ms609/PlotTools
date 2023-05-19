@@ -1,6 +1,6 @@
 Package: PlotTools
 Title: Add Continuous Legends to Plots
-Version: 0.1.0
+Version: 0.1.0.9000
 URL:
   https://ms609.github.io/PlotTools/,
   https://github.com/ms609/PlotTools/
@@ -16,11 +16,12 @@ Language: en-GB
 Depends: R (>= 3.2.0)
 Description: Annotate plots with legends for continuous variables and colour spectra using the base graphics plotting tools.
 Suggests: 
-    spelling,
-    knitr,
-    rmarkdown,
-    testthat (>= 3.0),
-    vdiffr (>= 1.0.0),
+  sp,
+  spelling,
+  knitr,
+  rmarkdown,
+  testthat (>= 3.0),
+  vdiffr (>= 1.0.0),
 Config/Needs/check: rcmdcheck
 Config/Needs/coverage: covr
 Config/Needs/metadata: codemeta

@@ -1,3 +1,7 @@
+# PlotTools v0.1.0.9000
+
+- Add polygon functions, initially from "Ternary"
+
 # PlotTools v0.1.0
 
 - Initial CRAN release, replacing previous implementation in package 
