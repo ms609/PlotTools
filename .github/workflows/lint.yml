@@ -17,7 +17,7 @@ on:
       - "**.md"
       - "**.yaml"
       - "**.yml"
-      - "!**lint.yaml"
+      - "!**lint.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
   pull_request:
@@ -34,9 +34,9 @@ on:
       - "**.git"
       - "**.json"
       - "**.md"
-      - "**.yml"
       - "**.yaml"
-      - "!**lint.yaml"
+      - "**.yml"
+      - "!**lint.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
 
