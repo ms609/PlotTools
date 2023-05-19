@@ -3,8 +3,42 @@
 on:
   push:
     branches: [main, master]
+    paths-ignore:
+      - "Meta**"
+      - "data-raw**"
+      - "docs**"
+      - "inst**"
+      - "man**"
+      - "memcheck**"
+      - "tests**"
+      - "vignettes**"
+      - "**.git"
+      - "**.json"
+      - "**.md"
+      - "**.yaml"
+      - "**.yml"
+      - "!**lint.yaml"
+      - "**.R[dD]ata"
+      - "**.Rpro*"
   pull_request:
     branches: [main, master]
+    paths-ignore:
+      - "Meta**"
+      - "data-raw**"
+      - "docs**"
+      - "inst**"
+      - "man**"
+      - "memcheck**"
+      - "tests**"
+      - "vignettes**"
+      - "**.git"
+      - "**.json"
+      - "**.md"
+      - "**.yml"
+      - "**.yaml"
+      - "!**lint.yaml"
+      - "**.R[dD]ata"
+      - "**.Rpro*"
 
 name: lint
 
