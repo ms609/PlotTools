@@ -15,12 +15,11 @@
 
 ## R CMD check results
 
-Other than to acknowledge that this is a new submission -
-There were no ERRORs or WARNINGs or NOTEs.
+There are no ERRORs or WARNINGs or NOTEs.
 
 ## Downstream dependencies
 
-There are as yet no reverse dependencies.
+There are currently four reverse dependencies, all of which I maintain.
 
-Once the package is on CRAN, Reverse dependencies will be checked using "revdepcheck" on
-[GitHub Actions](https://github.com/ms609/PlotTools/actions/workflows/revdepcheck.yml).
+Reverse dependencies are checked using "revdepcheck" on
+[GitHub Actions](https://github.com/ms609/PlotTools/actions/workflows/revdep.yml).
