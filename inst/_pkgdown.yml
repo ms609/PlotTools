@@ -11,7 +11,7 @@ template:
   params:
     bootswatch: journal
     docsearch:
-      app_id: PQTZW3A3WS
-      api_key: 1a3f070f20390600ef8e4f7801791ec3
+      app_id: H62C64OSU5
+      api_key: 6da7ab64a30fd6a93073de764eddfdb2
       index_name: plot-tools
     ganalytics: G-NJXMMHM5DV
