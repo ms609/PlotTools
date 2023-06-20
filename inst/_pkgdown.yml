@@ -12,6 +12,6 @@ template:
     bootswatch: journal
     docsearch:
       app_id: H62C64OSU5
-      api_key: fc0b3ec4e15da4b7ad121c73f77889fe
+      api_key: 6da7ab64a30fd6a93073de764eddfdb2
       index_name: plot-tools
     ganalytics: G-NJXMMHM5DV
