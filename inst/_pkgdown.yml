@@ -13,5 +13,5 @@ template:
     docsearch:
       app_id: H62C64OSU5
       api_key: 6da7ab64a30fd6a93073de764eddfdb2
-      index_name: plot-tools
+      index_name: plottools
     ganalytics: G-NJXMMHM5DV
