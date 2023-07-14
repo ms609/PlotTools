@@ -8,11 +8,11 @@
 SpectrumLegend(
   x = "topright",
   ...,
+  palette,
   legend,
   lty = 1,
   lwd = 4,
   bty = "o",
-  palette,
   adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
   horiz = FALSE,
   lend = "square",
@@ -40,6 +40,10 @@ SizeLegend(
 \arguments{
 \item{x, horiz, adj, seg.len, \dots}{Additional parameters to \code{\link[=legend]{legend()}}.}
 
+\item{palette}{Colour palette to depict.
+Specify either a vector of colours, or a function such that \code{palette(n)}
+returns a vector of \emph{n} colours.}
+
 \item{legend}{Character vector with which to label points on \code{palette}.
 Note that, in a vertical legend, values will be printed from top down;
 use \code{\link[=rev]{rev()}} to reverse the order.}
@@ -49,10 +53,6 @@ controlling line style.}
 
 \item{bty}{Character specifying the type of box to be drawn around the
 legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}
-
-\item{palette}{Colour palette to depict.
-Specify either a vector of colours, or a function such that \code{palette(n)}
-returns a vector of \emph{n} colours.}
 
 \item{cex}{Character expansion factor relative to current \code{par("cex")}.}
 

@@ -47,10 +47,10 @@
 #' @importFrom grDevices xy.coords
 #' @export
 SpectrumLegend <- function(x = "topright", ...,
+                           palette,
                            legend,
                            lty = 1, lwd = 4,
                            bty = "o",
-                           palette,
                            adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
                            horiz = FALSE,
                            lend = "square",
