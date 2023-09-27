@@ -9,12 +9,9 @@ test_that("Polygon geometry", {
   expect_equal(xy.coords(PolygonCenter(x, y))$y, 16.6 / 3)
 
   expect_equal(GrowPolygon(x, y, 0), xy.coords(x, y))
-  expect_equal(GrowPolygon(c(-1, 3, 3, -1),
-                           c(-1, -1, 3, 3),
-                           sqrt(2)),
-               list(x = c(-2, 4, 4, -2),
-                    y = c(-2, -2, 4, 4),
-                    xlab = NULL, ylab = NULL)
+  expect_equal(
+    GrowPolygon(c(-1, 3, 3, -1), c(-1, -1, 3, 3), sqrt(2)),
+    list(x = c(-2, 4, 4, -2), y = c(-2, -2, 4, 4), xlab = NULL, ylab = NULL)
   )
 
 

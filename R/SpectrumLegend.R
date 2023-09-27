@@ -47,17 +47,18 @@
 #' @importFrom graphics legend par rect segments xyinch
 #' @importFrom grDevices xy.coords
 #' @export
-SpectrumLegend <- function(x = "topright", ...,
-                           palette,
-                           legend,
-                           lty = 1, lwd = 4,
-                           bty = "o",
-                           adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
-                           horiz = FALSE,
-                           lend = "butt",
-                           cex = 1,
-                           seg.len = 1
-                           ) {
+SpectrumLegend <- function(
+  x = "topright", ...,
+  palette,
+  legend,
+  lty = 1, lwd = 4,
+  bty = "o",
+  adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
+  horiz = FALSE,
+  lend = "butt",
+  cex = 1,
+  seg.len = 1
+) {
   if (is.function(palette)) {
     palette <- palette(256)
   }
@@ -144,18 +145,19 @@ SpectrumLegend <- function(x = "topright", ...,
 #'                # A future release may calculate this automatically
 #' )
 #' @export
-SizeLegend <- function(x = "topright", ...,
-                       legend = character(0),
-                       width = c(0, 1),
-                       palette = par("col"),
-                       scale = c("pch", "lwd"),
-                       lty = 0, lwd = 4,
-                       bty = "o",
-                       adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
-                       horiz = FALSE,
-                       lend = "butt",
-                       cex = 1,
-                       seg.len
+SizeLegend <- function(
+  x = "topright", ...,
+  legend = character(0),
+  width = c(0, 1),
+  palette = par("col"),
+  scale = c("pch", "lwd"),
+  lty = 0, lwd = 4,
+  bty = "o",
+  adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
+  horiz = FALSE,
+  lend = "butt",
+  cex = 1,
+  seg.len
 ) {
 
   if (length(width) < 2) {
