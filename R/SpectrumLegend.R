@@ -17,7 +17,8 @@
 #' Specify either a vector of colours, or a function such that `palette(n)`
 #' returns a vector of _n_ colours.
 #' @param lwd,lty,lend Additional parameters to [`segments()`],
-#' controlling line style.
+#' controlling line style.  Use `lend = "butt"` (the default) if `palette` is
+#' semitransparent, to avoid artefacts.
 #' @param cex Character expansion factor relative to current `par("cex")`.
 #' @param bty Character specifying the type of box to be drawn around the
 #' legend. The allowed values are `"o"` (the default) and `"n"`.
@@ -53,7 +54,7 @@ SpectrumLegend <- function(x = "topright", ...,
                            bty = "o",
                            adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
                            horiz = FALSE,
-                           lend = "square",
+                           lend = "butt",
                            cex = 1,
                            seg.len = 1
                            ) {

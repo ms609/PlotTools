@@ -15,7 +15,7 @@ SpectrumLegend(
   bty = "o",
   adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
   horiz = FALSE,
-  lend = "square",
+  lend = "butt",
   cex = 1,
   seg.len = 1
 )
@@ -49,7 +49,8 @@ Note that, in a vertical legend, values will be printed from top down;
 use \code{\link[=rev]{rev()}} to reverse the order.}
 
 \item{lwd, lty, lend}{Additional parameters to \code{\link[=segments]{segments()}},
-controlling line style.}
+controlling line style.  Use \code{lend = "butt"} (the default) if \code{palette} is
+semitransparent, to avoid artefacts.}
 
 \item{bty}{Character specifying the type of box to be drawn around the
 legend. The allowed values are \code{"o"} (the default) and \code{"n"}.}

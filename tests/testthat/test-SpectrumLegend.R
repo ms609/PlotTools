@@ -11,7 +11,7 @@ test_that("SpectrumLegend()", {
     SpectrumLegend(x = "bottomleft", inset = 0.05,
                    legend = c("Top", "~", "Middle", "", "Bottom"),
                    lwd = 5,
-                   palette = function(n) hcl.colors(n, "RdYlBu"),
+                   palette = function(n) hcl.colors(n, "RdYlBu", alpha = 0.7),
                    text.col = c("blue", "grey", "brown", "grey", "red"),
                    title = "Big blue title", title.font = 3, title.cex = 1.5)
     SpectrumLegend(x = 0.4, y = 11.0, x.intersp = 2, horiz = TRUE,
