@@ -1,7 +1,7 @@
 # PlotTools v0.2.1 (2023-09-28)
 
 - Default to `SpectrumLegend(lend = "butt")` to avoid artefacts with
-  semi-transparency [#3](https://github.com/ms609/PlotTools/issues/3).
+  semi-transparency ([#3](https://github.com/ms609/PlotTools/issues/3)).
 - Use more intuitive argument order in `SpectrumLegend()`.
 
 
