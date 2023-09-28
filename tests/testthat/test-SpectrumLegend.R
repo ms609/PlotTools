@@ -11,7 +11,7 @@ test_that("SpectrumLegend()", {
     SpectrumLegend(x = "bottomleft", inset = 0.05,
                    legend = c("Top", "~", "Middle", "", "Bottom"),
                    lwd = 5,
-                   palette = function(n) hcl.colors(n, "RdYlBu"),
+                   palette = function(n) hcl.colors(n, "RdYlBu", alpha = 0.7),
                    text.col = c("blue", "grey", "brown", "grey", "red"),
                    title = "Big blue title", title.font = 3, title.cex = 1.5)
     SpectrumLegend(x = 0.4, y = 11.0, x.intersp = 2, horiz = TRUE,
@@ -40,19 +40,20 @@ test_that("Vertical SizeLegend()", {
                text.col = c("blue", "grey", "brown", "darkgrey", "red"),
                xpd = NA)
     big <- 12
-    expect_warning(val <- SizeLegend(x = 0.4, y = 11,
-               legend = seq(10, 0, by = -2),
-               width = big,
-               scale = "pch",
-               palette = rainbow,
-               lty = "dotted",
-               box.lty = "dashed", box.lwd = 2,
-               box.col = "darkred",
-               y.intersp = 2,
-               # bg = "#eeddcc", # TODO - see SpectrumLegend above
-               lend = "round",
-               title = "Multi-\nline\ntitle", xpd = NA),
-               "length two")
+    expect_warning(
+      val <- SizeLegend(x = 0.4, y = 11, legend = seq(10, 0, by = -2),
+                        width = big,
+                        scale = "pch",
+                        palette = rainbow,
+                        lty = "dotted",
+                        box.lty = "dashed", box.lwd = 2,
+                        box.col = "darkred",
+                        y.intersp = 2,
+                        # bg = "#eeddcc", # TODO - see SpectrumLegend above
+                        lend = "round",
+                        title = "Multi-\nline\ntitle", xpd = NA),
+      "length two"
+    )
 
     xc <- xyinch(par("cin"))[1]
     points(val$text$x[1] - xc - (xc * (big / 4)), val$text$y[1],

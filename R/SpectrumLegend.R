@@ -17,7 +17,8 @@
 #' Specify either a vector of colours, or a function such that `palette(n)`
 #' returns a vector of _n_ colours.
 #' @param lwd,lty,lend Additional parameters to [`segments()`],
-#' controlling line style.
+#' controlling line style.  Use `lend = "butt"` (the default) if `palette` is
+#' semitransparent, to avoid artefacts.
 #' @param cex Character expansion factor relative to current `par("cex")`.
 #' @param bty Character specifying the type of box to be drawn around the
 #' legend. The allowed values are `"o"` (the default) and `"n"`.
@@ -46,17 +47,18 @@
 #' @importFrom graphics legend par rect segments xyinch
 #' @importFrom grDevices xy.coords
 #' @export
-SpectrumLegend <- function(x = "topright", ...,
-                           palette,
-                           legend,
-                           lty = 1, lwd = 4,
-                           bty = "o",
-                           adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
-                           horiz = FALSE,
-                           lend = "square",
-                           cex = 1,
-                           seg.len = 1
-                           ) {
+SpectrumLegend <- function(
+  x = "topright", ...,
+  palette,
+  legend,
+  lty = 1, lwd = 4,
+  bty = "o",
+  adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
+  horiz = FALSE,
+  lend = "butt",
+  cex = 1,
+  seg.len = 1
+) {
   if (is.function(palette)) {
     palette <- palette(256)
   }
@@ -143,18 +145,19 @@ SpectrumLegend <- function(x = "topright", ...,
 #'                # A future release may calculate this automatically
 #' )
 #' @export
-SizeLegend <- function(x = "topright", ...,
-                       legend = character(0),
-                       width = c(0, 1),
-                       palette = par("col"),
-                       scale = c("pch", "lwd"),
-                       lty = 0, lwd = 4,
-                       bty = "o",
-                       adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
-                       horiz = FALSE,
-                       lend = "butt",
-                       cex = 1,
-                       seg.len
+SizeLegend <- function(
+  x = "topright", ...,
+  legend = character(0),
+  width = c(0, 1),
+  palette = par("col"),
+  scale = c("pch", "lwd"),
+  lty = 0, lwd = 4,
+  bty = "o",
+  adj = if (horiz) c(0.5, 0.5) else c(0, 0.5),
+  horiz = FALSE,
+  lend = "butt",
+  cex = 1,
+  seg.len
 ) {
 
   if (length(width) < 2) {
