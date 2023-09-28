@@ -3,6 +3,7 @@
 on:
   schedule:
     - cron: "03 03 * * 1"
+  workflow_dispatch:
   push:
     branches:
       - main
