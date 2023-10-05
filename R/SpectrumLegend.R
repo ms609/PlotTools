@@ -38,7 +38,8 @@
 #'      xlab = "x", ylab = "y")
 #'
 #' SpectrumLegend("bottomright", legend = c("Bright", "Middle", "Dark"),
-#'                palette = hcl.colors(32L), lwd = 5,
+# hcl.colors requires R > 3.5
+#'                palette = heat.colors(32L), lwd = 5,
 #'                inset = 0.05, # Inset from plot margin
 #'                title = "Brightness")
 #' SpectrumLegend("topright", horiz = TRUE,
