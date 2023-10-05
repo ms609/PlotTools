@@ -1,3 +1,8 @@
+# PlotTools v0.2.1.9000 (2023-10-05)
+
+- `Col2Hex()` converts R colour names to hexadecimal codes.
+
+
 # PlotTools v0.2.1 (2023-09-28)
 
 - Default to `SpectrumLegend(lend = "butt")` to avoid artefacts with
