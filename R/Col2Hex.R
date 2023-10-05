@@ -9,10 +9,12 @@
 #' @export
 Col2Hex <- function(col, alpha = FALSE) {
   if (alpha) {
-    apply(col2rgb(col, alpha), 2, function (x)
-      rgb(x[1], x[2], x[3], x[4], maxColorValue = 255))
+    apply(col2rgb(col, alpha), 2, function(x) {
+      rgb(x[1], x[2], x[3], x[4], maxColorValue = 255)
+    })
   } else {
-    apply(col2rgb(col, alpha), 2, function (x)
-      rgb(x[1], x[2], x[3], maxColorValue = 255))
+    apply(col2rgb(col, alpha), 2, function(x) {
+      rgb(x[1], x[2], x[3], maxColorValue = 255)
+    })
   }
 }
