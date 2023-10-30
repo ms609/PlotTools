@@ -22,6 +22,7 @@ test_that("Polygon geometry", {
   expect_equal(-PolygonArea(dfr), PolygonArea(dfr, positive = FALSE))
   cent <- PolygonCentre(dfr)
   skip_if_not_installed("sp")
+  skip_if_not_installed("base", "3.6") # for library(include.only)
   if (requireNamespace("sp", quietly = TRUE)) {
     library("sp", include.only = "point.in.polygon")
     expect_equal(point.in.polygon(cent[, "x"], cent[, "y"], dfr$x, dfr$y), 1L)
