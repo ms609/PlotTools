@@ -1,4 +1,4 @@
-# PlotTools v0.2.1.9000 (2023-10-05)
+# PlotTools v0.3.0 (2023-10-30)
 
 - `Col2Hex()` converts R colour names to hexadecimal codes.
 
