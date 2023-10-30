@@ -1,4 +1,5 @@
 #' Colour to hexadecimal conversion
+#'
 #' Convert R colour to hexadecimal representation.
 #' @inheritParams grDevices::col2rgb
 #' @importFrom grDevices col2rgb rgb
