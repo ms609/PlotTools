@@ -90,18 +90,10 @@ SpectrumLegend <- function(
 
     # as not plotting lines:
     lgd[[c("rect", "left")]] <-  lgd[[c("rect", "left")]] + (barSpace / 2)
-
-    lgd[[c("rect", "top")]] <-  lgd[[c("rect", "top")]]
     lgd[[c("rect", "h")]] <-  lgd[[c("rect", "h")]] + barSpace
 
     if (bty == "o") {
-      box <- lgd[["rect"]]
-      dots <- list(...)
-      rect(box[["left"]], box[["top"]] - box[["h"]],
-           box[["left"]] + box[["w"]], box[["top"]],
-           # col = dots$bg, # TODO not supported - overprints text
-           lwd = dots[["box.lwd"]], lty = dots[["box.lty"]],
-           border = dots[["box.col"]])
+      .DrawBox(lgd[["rect"]], ...)
     }
   } else {
     xc <- Cex * xyc[[1]]
@@ -188,18 +180,12 @@ SizeLegend <- function(
     xEnds <- range(textXY[["x"]])
     yEnds <- textXY[["y"]][c(1, 1)] - yc - (yc * seg.len / 2)
 
-    lgd[[c("rect", "top")]] <- lgd[[c("rect", "top")]]
     lgd[[c("rect", "h")]] <- lgd[[c("rect", "h")]] + barSpace
 
     if (bty == "o") {
-      box <- lgd[["rect"]]
-      dots <- list(...)
-      rect(box[["left"]], box[["top"]] - box[["h"]],
-           box[["left"]] + box[["w"]], box[["top"]],
-           # col = dots$bg, # TODO not supported - overprints text
-           lwd = dots[["box.lwd"]], lty = dots[["box.lty"]],
-           border = dots[["box.col"]])
+      .DrawBox(lgd[["rect"]], ...)
     }
+
   } else {
     xEnds <- textXY[["x"]][c(1, 1)] - xchar - (xchar * seg.len / 2)
     yEnds <- range(textXY[["y"]])
@@ -218,6 +204,22 @@ SizeLegend <- function(
 
   # Return:
   invisible(lgd)
+}
+
+.DrawBox <- function(box, ...) {
+  dots <- list(...)
+  x <- box[["left"]] + c(0, box[["w"]])
+  y <- box[["top"]] - c(box[["h"]], 0)
+  if (par("xlog")) {
+    x <- 10 ^ x
+  }
+  if (par("ylog")) {
+    y <- 10 ^ y
+  }
+  rect(x[[1]], y[[1]], x[[2]], y[[2]],
+       # col = dots[["bg"]], # TODO not supported - overprints text
+       lwd = dots[["box.lwd"]], lty = dots[["box.lty"]],
+       border = dots[["box.col"]])
 }
 
 .DrawLegend <- function(xEnds, yEnds, nPts, palette, lwd, lty, lend) {

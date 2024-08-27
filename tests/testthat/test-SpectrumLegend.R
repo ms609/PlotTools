@@ -44,13 +44,13 @@ test_that("SpectrumLegend()", {
   })
 })
 
-test_that("Vertical SizeLegend(), log plot", {
+test_that("Vertical SizeLegend()", {
   skip_if(packageVersion("graphics") < "4.1")
   skip_if(packageVersion("vdiffr") < "1.0")
   vdiffr::expect_doppelganger("SizeLegend-v", function() {
     # Set up blank plot
-    plot(c(1, 10), c(100, 10), asp = 1, type = "n", frame.plot = FALSE,
-         log = "xy", xlab = "x", ylab = "y")
+    plot(0:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
+         xlab = "x", ylab = "y")
 
     SizeLegend(x = "bottomleft", inset = 0.05,
                legend = c("Narrow", "", "Middle", "", "Wide"),
@@ -61,7 +61,7 @@ test_that("Vertical SizeLegend(), log plot", {
                xpd = NA)
     big <- 12
     expect_warning(
-      val <- SizeLegend(x = 5, y = 100, legend = seq(10, 0, by = -2),
+      val <- SizeLegend(x = 0.4, y = 11, legend = seq(10, 0, by = -2),
                         width = big,
                         scale = "pch",
                         palette = rainbow,
@@ -75,19 +75,19 @@ test_that("Vertical SizeLegend(), log plot", {
       "length two"
     )
 
-    xc <- xyinch(par("cin"))[1]
-    points(val$text$x[1] - xc - (xc * (big / 4)), val$text$y[1],
+    xc <- xyinch(par("cin"))[[1]]
+    points(val$text$x[[1]] - xc - (xc * (big / 4)), val$text$y[1],
            pch = 1, cex = big, col = "darkgreen")
   })
 })
 
-test_that("Horizontal SizeLegend()", {
+test_that("Horizontal SizeLegend(), log plot", {
   skip_if(packageVersion("graphics") < "4.1")
   skip_if(packageVersion("vdiffr") < "1.0")
   vdiffr::expect_doppelganger("SizeLegend-h", function() {
     # Set up blank plot
-    plot(0:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
-         xlab = "x", ylab = "y")
+    plot(c(1, 10), c(100, 10), asp = 1, type = "n", frame.plot = FALSE,
+         log = "xy", xlab = "x", ylab = "y")
 
     SizeLegend(
       horiz = TRUE, width = c(1, 4),
