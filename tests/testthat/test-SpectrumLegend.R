@@ -22,6 +22,26 @@ test_that("SpectrumLegend()", {
                    lty = "dotted", lwd = 6, lend = "round",
                    title = "Multi-\nline\ntitle", xpd = NA)
   })
+
+  vdiffr::expect_doppelganger("SpectrumLegend-log-y", function() {
+
+    # Set up blank plot
+    plot(2:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
+         xlab = "x", ylab = "y", log = "y")
+    SpectrumLegend(x = "bottomleft", inset = 0.05,
+                   legend = c("Top", "~", "Middle", "", "Bottom"),
+                   lwd = 5,
+                   palette = function(n) hcl.colors(n, "RdYlBu", alpha = 0.7),
+                   text.col = c("blue", "grey", "brown", "grey", "red"),
+                   title = "Big blue title", title.font = 3, title.cex = 1.5)
+    SpectrumLegend(x = 0.4, y = 11.0, x.intersp = 2, horiz = TRUE,
+                   legend = seq(0, 10, by = 2), palette = 1:10,
+                   box.lty = "dashed", box.lwd = 2,
+                   box.col = "darkred",
+                   # bg = "#eeddcc", # Not yet supported
+                   lty = "dotted", lwd = 6, lend = "round",
+                   title = "Multi-\nline\ntitle", xpd = NA)
+  })
 })
 
 test_that("Vertical SizeLegend()", {
@@ -55,19 +75,19 @@ test_that("Vertical SizeLegend()", {
       "length two"
     )
 
-    xc <- xyinch(par("cin"))[1]
-    points(val$text$x[1] - xc - (xc * (big / 4)), val$text$y[1],
+    xc <- xyinch(par("cin"))[[1]]
+    points(val$text$x[[1]] - xc - (xc * (big / 4)), val$text$y[1],
            pch = 1, cex = big, col = "darkgreen")
   })
 })
 
-test_that("Horizontal SizeLegend()", {
+test_that("Horizontal SizeLegend(), log plot", {
   skip_if(packageVersion("graphics") < "4.1")
   skip_if(packageVersion("vdiffr") < "1.0")
   vdiffr::expect_doppelganger("SizeLegend-h", function() {
     # Set up blank plot
-    plot(0:1, 10:11, asp = 1, type = "n", frame.plot = FALSE,
-         xlab = "x", ylab = "y")
+    plot(c(1, 10), c(100, 10), asp = 1, type = "n", frame.plot = FALSE,
+         log = "xy", xlab = "x", ylab = "y")
 
     SizeLegend(
       horiz = TRUE, width = c(1, 4),
