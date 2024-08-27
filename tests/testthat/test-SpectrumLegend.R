@@ -50,8 +50,7 @@ test_that("Vertical SizeLegend(), log plot", {
   vdiffr::expect_doppelganger("SizeLegend-v", function() {
     # Set up blank plot
     plot(c(1, 10), c(100, 10), asp = 1, type = "n", frame.plot = FALSE,
-         log = "xy",
-         xlab = "x", ylab = "y")
+         log = "xy", xlab = "x", ylab = "y")
 
     SizeLegend(x = "bottomleft", inset = 0.05,
                legend = c("Narrow", "", "Middle", "", "Wide"),
@@ -62,7 +61,7 @@ test_that("Vertical SizeLegend(), log plot", {
                xpd = NA)
     big <- 12
     expect_warning(
-      val <- SizeLegend(x = 0.4, y = 11, legend = seq(10, 0, by = -2),
+      val <- SizeLegend(x = 5, y = 100, legend = seq(10, 0, by = -2),
                         width = big,
                         scale = "pch",
                         palette = rainbow,

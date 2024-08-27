@@ -214,7 +214,7 @@ SizeLegend <- function(
 
   .DrawLegend(xEnds, yEnds, resolution, palette,
               lwd = seq(lwd[[1]], lwd[[2]], length.out = resolution),
-              lty, lend)
+              lty = 1, lend)
 
   # Return:
   invisible(lgd)
