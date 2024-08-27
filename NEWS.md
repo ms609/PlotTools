@@ -1,3 +1,8 @@
+# PlotTools v0.3.0.9000 (2024-08-27)
+
+- `SpectrumLegend()` supports log scales.
+
+
 # PlotTools v0.3.0 (2023-10-30)
 
 - `Col2Hex()` converts R colour names to hexadecimal codes.

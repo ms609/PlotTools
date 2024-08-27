@@ -77,48 +77,39 @@ SpectrumLegend <- function(
                 lty = 0, ncol = 1,
                 seg.len = seg.len,
                 ...)
-  textXY <- lgd$text
+  textXY <- lgd[["text"]]
 
   Cex <- cex * par("cex")
   xyc <- xyinch(par("cin"), warn.log = FALSE)
 
   if (horiz) {
-    xEnds <- range(textXY$x)
-    yc <- Cex * xyc[2L]
+    xEnds <- range(textXY[["x"]])
+    yc <- Cex * xyc[[2]]
     barSpace <- yc
-    yEnds <- textXY$y[c(1, 1)] - barSpace
+    yEnds <- textXY[["y"]][c(1, 1)] - barSpace
 
-    lgd$rect$left <- lgd$rect$left + (barSpace / 2) # as not plotting lines
-    lgd$rect$top <- lgd$rect$top
-    lgd$rect$h <- lgd$rect$h + barSpace
+    # as not plotting lines:
+    lgd[[c("rect", "left")]] <-  lgd[[c("rect", "left")]] + (barSpace / 2)
+
+    lgd[[c("rect", "top")]] <-  lgd[[c("rect", "top")]]
+    lgd[[c("rect", "h")]] <-  lgd[[c("rect", "h")]] + barSpace
 
     if (bty == "o") {
-      box <- lgd$rect
+      box <- lgd[["rect"]]
       dots <- list(...)
-      rect(box$left, box$top - box$h,
-           box$left + box$w, box$top,
+      rect(box[["left"]], box[["top"]] - box[["h"]],
+           box[["left"]] + box[["w"]], box[["top"]],
            # col = dots$bg, # TODO not supported - overprints text
-           lwd = dots$box.lwd, lty = dots$box.lty,
-           border = dots$box.col)
+           lwd = dots[["box.lwd"]], lty = dots[["box.lty"]],
+           border = dots[["box.col"]])
     }
   } else {
-    xc <- Cex * xyc[1L]
-    xEnds <- textXY$x[c(1, 1)] - xc - (xc * seg.len / 2)
-    yEnds <- range(textXY$y)
+    xc <- Cex * xyc[[1]]
+    xEnds <- textXY[["x"]][c(1, 1)] - xc - (xc * seg.len / 2)
+    yEnds <- range(textXY[["y"]])
   }
 
-  segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:nCol / nCol)
-  segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:nCol / nCol)
-
-  nPlus1 <- nCol + 1L
-  # Create overlap to avoid hairline gaps in SVG render
-  epsilon <- 0.004
-  epsX <- abs(segX[nPlus1] - segX[1]) * epsilon
-  epsY <- abs(segY[nPlus1] - segY[1]) * epsilon
-  segments(segX[-nPlus1], segY[-nPlus1],
-           segX[-1] + epsX, segY[-1] + epsY,
-           col = palette,
-           lwd = lwd, lty = lty, lend = lend)
+  .DrawLegend(xEnds, yEnds, nCol, palette, lwd, lty, lend)
 
   # Return:
   invisible(lgd)
@@ -190,28 +181,28 @@ SizeLegend <- function(
                 col = par("bg"),
                 seg.len = if (horiz) 0 else seg.len,
                 ...)
-  textXY <- lgd$text
+  textXY <- lgd[["text"]]
 
 
   if (horiz) {
-    xEnds <- range(textXY$x)
-    yEnds <- textXY$y[c(1, 1)] - yc - (yc * seg.len / 2)
+    xEnds <- range(textXY[["x"]])
+    yEnds <- textXY[["y"]][c(1, 1)] - yc - (yc * seg.len / 2)
 
-    lgd$rect$top <- lgd$rect$top
-    lgd$rect$h <- lgd$rect$h + barSpace
+    lgd[[c("rect", "top")]] <- lgd[[c("rect", "top")]]
+    lgd[[c("rect", "h")]] <- lgd[[c("rect", "h")]] + barSpace
 
     if (bty == "o") {
-      box <- lgd$rect
+      box <- lgd[["rect"]]
       dots <- list(...)
-      rect(box$left, box$top - box$h,
-           box$left + box$w, box$top,
+      rect(box[["left"]], box[["top"]] - box[["h"]],
+           box[["left"]] + box[["w"]], box[["top"]],
            # col = dots$bg, # TODO not supported - overprints text
-           lwd = dots$box.lwd, lty = dots$box.lty,
-           border = dots$box.col)
+           lwd = dots[["box.lwd"]], lty = dots[["box.lty"]],
+           border = dots[["box.col"]])
     }
   } else {
-    xEnds <- textXY$x[c(1, 1)] - xchar - (xchar * seg.len / 2)
-    yEnds <- range(textXY$y)
+    xEnds <- textXY[["x"]][c(1, 1)] - xchar - (xchar * seg.len / 2)
+    yEnds <- range(textXY[["y"]])
   }
 
   if (is.function(palette)) {
@@ -219,21 +210,39 @@ SizeLegend <- function(
   }
   nCol <- length(palette)
   resolution <- if (nCol > 1) nCol else 256
-  segX <- xEnds[1] + ((xEnds[2] - xEnds[1]) * 0:resolution / resolution)
-  segY <- yEnds[1] + ((yEnds[2] - yEnds[1]) * 0:resolution / resolution)
 
 
-  nPlus1 <- resolution + 1L
-  # Create overlap to avoid hairline gaps in SVG render
-  epsilon <- 0.004
-  epsX <- abs(segX[nPlus1] - segX[1]) * epsilon
-  epsY <- abs(segY[nPlus1] - segY[1]) * epsilon
-  segments(segX[-nPlus1], segY[-nPlus1],
-           segX[-1] + epsX, segY[-1] + epsY,
-           col = palette,
-
-           lwd = seq(lwd[1], lwd[2], length.out = resolution), lend = lend)
+  .DrawLegend(xEnds, yEnds, resolution, palette,
+              lwd = seq(lwd[[1]], lwd[[2]], length.out = resolution),
+              lty, lend)
 
   # Return:
   invisible(lgd)
+}
+
+.DrawLegend <- function(xEnds, yEnds, nPts, palette, lwd, lty, lend) {
+
+  segX <- xEnds[[1]] + ((xEnds[[2]] - xEnds[[1]]) * 0:nPts / nPts)
+  segY <- yEnds[[1]] + ((yEnds[[2]] - yEnds[[1]]) * 0:nPts / nPts)
+
+  nPlus1 <- nPts + 1L
+
+  # Create overlap to avoid hairline gaps in SVG render
+  epsilon <- 0.004
+  epsX <- abs(segX[[nPlus1]] - segX[[1]]) * epsilon
+  epsY <- abs(segY[[nPlus1]] - segY[[1]]) * epsilon
+
+  x <- cbind(segX[-nPlus1], segX[-1] + epsX)
+  y <- cbind(segY[-nPlus1], segY[-1] + epsY)
+
+  if (par("xlog")) {
+    x <- 10 ^ x
+  }
+  if (par("ylog")) {
+    y <- 10 ^ y
+  }
+
+  segments(x[, 1], y[, 1], x[, 2], y[, 2], col = palette,
+           lwd = lwd, lty = lty, lend = lend)
+
 }
