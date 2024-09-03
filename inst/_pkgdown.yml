@@ -8,10 +8,9 @@ development:
   mode: auto
 
 template:
+  bootstrap: 5
+  bslib:
+    danger: "#A6081A" # Accessibility suggestion
   params:
     bootswatch: journal
-    docsearch:
-      app_id: H62C64OSU5
-      api_key: 6da7ab64a30fd6a93073de764eddfdb2
-      index_name: plottools
     ganalytics: G-NJXMMHM5DV
