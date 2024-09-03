@@ -1,4 +1,4 @@
-# PlotTools v0.3.0.9000 (2024-08-27)
+# PlotTools v0.3.1 (2024-08-27)
 
 - `SpectrumLegend()` supports log scales.
 
