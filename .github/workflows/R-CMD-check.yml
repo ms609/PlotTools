@@ -17,7 +17,7 @@ on:
       - "**.md"
       - "**.yaml"
       - "**.yml"
-      - "!**R-cmd-check.yml"
+      - "!**R-CMD-check.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
   pull_request:
@@ -33,7 +33,7 @@ on:
       - "**.md"
       - "**.yaml"
       - "**.yml"
-      - "!**R-cmd-check.yml"
+      - "!**R-CMD-check.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
 
