@@ -89,6 +89,8 @@ jobs:
         with:
           extra-packages: |
             testthat@3.1.10
+            evaluate@0.23
+            knitr@1.45
           needs: |
             check
 
