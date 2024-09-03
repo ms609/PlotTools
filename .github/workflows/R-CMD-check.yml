@@ -99,6 +99,9 @@ jobs:
             testthat@3.1.10
             evaluate@0.23
             knitr@1.45
+            httr2@1.0.1
+            rjson@0.2.20
+            XML@3.99-0.3
           needs: |
             check
 
