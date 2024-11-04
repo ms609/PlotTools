@@ -1,11 +1,11 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>https://ms609.github.io/PlotTools/authors.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/index.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/news/index.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/reference/Col2Hex.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/reference/PlotTools-package.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/reference/Polygon-Geometry.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/reference/SpectrumLegend.html</loc></url>
-<url><loc>https://ms609.github.io/PlotTools/reference/index.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/authors.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/index.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/news/index.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/reference/Col2Hex.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/reference/PlotTools-package.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/reference/Polygon-Geometry.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/reference/SpectrumLegend.html</loc></url>
+<url><loc>https://ms609.github.io/PlotTools/dev/reference/index.html</loc></url>
 </urlset>
 
