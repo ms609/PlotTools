@@ -23,3 +23,4 @@ CONTRIBUTING.md
 ^Meta$
 ^codemeta\.json$
 ^\.github$
+^CRAN-SUBMISSION$
