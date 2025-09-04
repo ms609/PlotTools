@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "PlotTools",
-  "description": "Annotate plots with legends for continuous variables and colour spectra using the base graphics plotting tools; and manipulate irregular polygons.",
+  "description": "Annotate plots with legends for continuous variables and colour spectra using the base graphics plotting tools; and manipulate irregular polygons. Includes palettes for colour-blind viewers.",
   "name": "PlotTools: Add Continuous Legends to Plots",
   "relatedLink": "https://ms609.github.io/PlotTools/",
   "codeRepository": "https://github.com/ms609/PlotTools/",
@@ -28,6 +28,15 @@
       "familyName": "Smith",
       "email": "martin.smith@durham.ac.uk",
       "@id": "https://orcid.org/0000-0001-5660-1727"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Martin",
+      "familyName": "Krzywinski",
+      "email": "martink@bcgsc.ca",
+      "@id": "https://orcid.org/0009-0005-5785-3631"
     }
   ],
   "copyrightHolder": [
@@ -129,11 +138,11 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.2.0"
+      "version": ">= 3.5"
     },
     "SystemRequirements": null
   },
-  "fileSize": "259.521KB",
+  "fileSize": "266.622KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
