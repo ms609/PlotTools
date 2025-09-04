@@ -26,5 +26,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Martin R. Smith \email{martin.smith@durham.ac.uk} (\href{https://orcid.org/0000-0001-5660-1727}{ORCID}) [copyright holder]
 
+Other contributors:
+\itemize{
+  \item Martin Krzywinski \email{martink@bcgsc.ca} (\href{https://orcid.org/0009-0005-5785-3631}{ORCID}) [contributor]
+}
+
 }
 \keyword{internal}
