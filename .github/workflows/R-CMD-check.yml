@@ -100,6 +100,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            tzdb@0.4.0
             rvest@1.0.4
             gh@1.4.1
             svglite@2.1.3
