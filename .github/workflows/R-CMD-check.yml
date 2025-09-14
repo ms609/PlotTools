@@ -101,6 +101,7 @@ jobs:
         with:
           extra-packages: |
             broom@1.0.8
+            Matrix@1.6-0
             VGAMdata@0.0-5
             VGAMdata@1.1-6
             VGAM@1.1-6
