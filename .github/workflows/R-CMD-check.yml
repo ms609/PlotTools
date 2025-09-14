@@ -104,7 +104,7 @@ jobs:
             mosaic@1.8.4
             sparsevctrs@0.3.3
             mvinfluence@0.9.0
-            Sleuth2@2.0-5
+            Sleuth2@1.0-0
             modelsummary@1.4.3
             plm@2.4-3
             heplots@1.6.2
