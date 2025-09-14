@@ -148,6 +148,7 @@ jobs:
             recipes@0.1.17
             slider@0.2.2
             emmeans@1.7.5
+            latentnet@2.10.6
             ergm.count@4.1.1
             ergm@4.2.3
             gam@1.20.2
