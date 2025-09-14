@@ -102,8 +102,8 @@ jobs:
           extra-packages: |
             htmlTable@2.4.1
             rio@1.1.1
-            rms@6.0.0
-            VGAM@1.1.1
+            rms@5.1-4
+            VGAM@1.0.6
             Hmisc@5.0-0
             ggplot2@3.5.2
             tzdb@0.4.0
