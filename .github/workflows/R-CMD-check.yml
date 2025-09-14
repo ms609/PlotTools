@@ -100,18 +100,18 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            broom@1.0.0
+            broom@1.0.5
             VGAMdata@0.0-5
             VGAMdata@1.1-6
             VGAM@1.1-6
             duckdb@1.2.1
-            Hmisc@5.0-0
+            Hmisc@5.1-1
+            ggplot2@3.5.2
             htmlTable@2.4.1
             rio@1.1.1
             rms@5.1-4
             arrow@15.0.1
             readODS@2.3.1
-            ggplot2@3.5.2
             tzdb@0.4.0
             rvest@1.0.4
             gh@1.4.1
