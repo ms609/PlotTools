@@ -100,7 +100,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            VGAMdata@1.1-9
+            VGAMdata@1.0-3
             VGAM@1.1-6
             duckdb@1.2.1
             Hmisc@5.0-0
