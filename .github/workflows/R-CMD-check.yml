@@ -104,7 +104,7 @@ jobs:
             ggstats@0.2.1
             ggsurvfit@1.0.0
             subplex@1.7
-            tidycmprsk@0.2.0
+            tidycmprsk@1.0.0
             statnet.common@4.11.0
             collapse@1.6.5
             clock@0.6.0
@@ -123,7 +123,7 @@ jobs:
             tidymodels@0.1.4
             gdtools@0.2.3
             rmcorr@0.4.5
-            hardhat@1.0.0
+            hardhat@1.4.1
             WRS2@1.1-3
             dotCall64@1.1-1
             fields@13.3
