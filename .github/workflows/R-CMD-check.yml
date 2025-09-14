@@ -145,7 +145,7 @@ jobs:
             gamlss@5.3-1
             gamm4@0.2-6
             unmarked@1.1.1
-            datawizard@0.2.1
+            datawizard@1.2.0
             spam@2.7-0
             GGally@2.1.2
             bayesplot@1.9.0
