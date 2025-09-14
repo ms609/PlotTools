@@ -51,7 +51,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release'}
           - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-24.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
+          - {os: ubuntu-24.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
           - {os: ubuntu-24.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
           - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
 
@@ -95,8 +95,8 @@ jobs:
             coverage
 
 
-      - name: Set up R dependencies (R 3.6)
-        if: matrix.config.r == '3.6'
+      - name: Set up R dependencies (R 4.0)
+        if: matrix.config.r == '4.0'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
@@ -145,7 +145,7 @@ jobs:
             recipes@0.1.17
             slider@0.2.2
             emmeans@1.7.5
-            ergm@4.1.2
+            ergm@4.2.3
             gam@1.20.2
             metafor@3.4-0
             modeldata@1.0.0
