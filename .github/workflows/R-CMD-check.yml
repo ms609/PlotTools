@@ -104,7 +104,7 @@ jobs:
             Sleuth2@2.0-5
             modelsummary@1.4.3
             plm@2.4-3
-            heplots@1.7.3
+            heplots@1.6.2
             ggstats@0.2.1
             ggsurvfit@1.0.0
             subplex@1.7
