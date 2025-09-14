@@ -137,7 +137,7 @@ jobs:
             recipes@0.1.17
             slider@0.2.2
             emmeans@1.7.5
-            ergm@4.0.1
+            ergm@4.1.2
             gam@1.20.2
             metafor@3.4-0
             modeldata@1.0.0
