@@ -132,7 +132,7 @@ jobs:
             ggside@0.2.2
             randomForest@4.6-14
             fastICA@1.2-2
-            parsnip@0.2.1
+            parsnip@1.3.0
             workflows@0.2.5
             effectsize@0.6.0.1
             performance@0.8.0
