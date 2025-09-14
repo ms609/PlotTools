@@ -100,6 +100,12 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            fastICA@1.2-3
+            parsnip@0.2.1
+            workflows@0.2.5
+            effectsize@0.6.0.1
+            performance@0.8.0
+            see@0.6.7
             gamlss@5.3-1
             gamm4@0.2-6
             unmarked@1.1.1
