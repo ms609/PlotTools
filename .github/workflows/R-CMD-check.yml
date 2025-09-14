@@ -100,7 +100,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            broom@1.0.5
+            broom@1.0.7
             VGAMdata@0.0-5
             VGAMdata@1.1-6
             VGAM@1.1-6
