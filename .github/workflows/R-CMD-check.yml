@@ -100,6 +100,12 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            dotCall64@1.0-1
+            fields@13.3
+            correlation@0.7.1
+            ggdist@3.0.1
+            ggside@0.2.2
+            randomForest@
             fastICA@1.2-3
             parsnip@0.2.1
             workflows@0.2.5
