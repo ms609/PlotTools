@@ -101,6 +101,7 @@ jobs:
         with:
           extra-packages: |
             ggstats@0.2.1
+            ggsurvfit@1.0.0
             subplex@1.7
             tidycmprsk@0.2.0
             statnet.common@4.7.0
