@@ -100,6 +100,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            prodlim@2019.11.13
             gtsummary@1.6.3
             survival@3.7-0
             pals@1.7
