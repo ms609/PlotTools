@@ -4,8 +4,8 @@
   - Windows 10, R 4.4.1 (2024-06-14 ucrt)
 
 * [GitHub Actions](https://github.com/ms609/PlotTools/actions)
-  - Ubuntu 20.04
-    - R 3.6.0
+  - Ubuntu 24.04
+    - R 4.0
     - R release (tests, examples & vignettes run with valgrind)
     - R devel
   - Mac OS X 10.15.7, R release
