@@ -105,7 +105,7 @@ jobs:
             ggsurvfit@1.0.0
             subplex@1.7
             tidycmprsk@0.2.0
-            statnet.common@4.7.0
+            statnet.common@4.11.0
             collapse@1.6.5
             clock@0.6.0
             qqconf@1.1.1
