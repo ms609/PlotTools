@@ -100,6 +100,11 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            collapse@1.6.5
+            clock@0.6.0
+            qqconf@1.1.1
+            dfidx@0.0-4
+            gsl@2.1-7
             prodlim@2019.11.13
             gtsummary@1.6.3
             survival@3.7-0
@@ -111,6 +116,7 @@ jobs:
             workflowsets@0.1.0
             metafor@3.0-2
             tidymodels@0.1.4
+            gdtools@0.2.3
             rmcorr@0.4.5
             hardhat@0.1.6
             WRS2@1.1-3
