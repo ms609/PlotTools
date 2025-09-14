@@ -105,7 +105,7 @@ jobs:
             correlation@0.7.1
             ggdist@3.0.1
             ggside@0.2.2
-            randomForest@
+            randomForest@4.6-14
             fastICA@1.2-3
             parsnip@0.2.1
             workflows@0.2.5
