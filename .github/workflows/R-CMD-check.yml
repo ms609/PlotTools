@@ -101,6 +101,7 @@ jobs:
         with:
           extra-packages: |
             plm@2.4-3
+            heplots@1.7.0
             ggstats@0.2.1
             ggsurvfit@1.0.0
             subplex@1.7
