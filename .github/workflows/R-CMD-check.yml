@@ -121,7 +121,7 @@ jobs:
             gtsummary@1.6.3
             survival@3.7-0
             pals@1.7
-            dials@1.0.0
+            dials@1.2.0
             infer@1.0.0
             tune@0.1.6
             workflowsets@0.1.0
