@@ -115,7 +115,7 @@ jobs:
             survey@4.1-1
             broom@1.0.8
             Matrix@1.6-5
-            VGAMdata@0.0-5
+            VGAMextra@0.0-5
             VGAMdata@1.1-6
             VGAM@1.1-6
             duckdb@1.2.1
