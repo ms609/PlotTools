@@ -100,6 +100,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            Hmisc@5.0-0
             ggplot2@3.5.2
             tzdb@0.4.0
             rvest@1.0.4
