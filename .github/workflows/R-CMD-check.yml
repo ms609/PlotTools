@@ -119,7 +119,7 @@ jobs:
             dfidx@0.0-4
             gsl@2.1-7
             prodlim@2019.11.13
-            gtsummary@1.6.3
+            gtsummary@1.7.2
             survival@3.7-0
             pals@1.7
             dials@1.4.0
