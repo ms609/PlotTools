@@ -100,6 +100,8 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            pals@1.7
+            broom.helpers@1.5.0
             dials@0.1.0
             infer@1.0.0
             tune@0.1.6
@@ -115,7 +117,7 @@ jobs:
             ggdist@3.0.1
             ggside@0.2.2
             randomForest@4.6-14
-            fastICA@1.2-3
+            fastICA@1.2-2
             parsnip@0.2.1
             workflows@0.2.5
             effectsize@0.6.0.1
