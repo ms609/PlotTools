@@ -88,8 +88,8 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - name: Install system dependencies (old R)
-        if: ${{ matrix.config.r == '4.0' || matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
+      - name: Install system dependencies (R 3.x)
+        if: ${{ matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -99,6 +99,12 @@ jobs:
           libxml2-dev \
           libharfbuzz-dev \
           libfribidi-dev
+          
+      - name: Set C++ standard (R 3.x)
+        if: ${{ matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
+          echo "CXX17=g++ -std=gnu++17" >> $GITHUB_ENV
+          echo "CXX14=g++ -std=gnu++14" >> $GITHUB_ENV
+          echo "CXX11=g++ -std=gnu++11" >> $GITHUB_ENV
 
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
