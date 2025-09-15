@@ -130,7 +130,7 @@ jobs:
           needs: |
             check
           extra-packages: |
-            vdiffr
+            vdiffr?ignore-before-r=4.0
 
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
