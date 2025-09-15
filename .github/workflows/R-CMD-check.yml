@@ -114,9 +114,17 @@ jobs:
           sed -i '1i#include <cstdint>' vdiffr-src/src/devSVG.cpp
           echo "Installing patched vdiffr..."
           R CMD INSTALL --preclean --no-multiarch --with-keep.source vdiffr-src
+
+      - name: Set up R dependencies (Windows)
+        if: matrix.config.r < '4.0'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"hard"'
+          extra-packages: |
+            rcmdcheck
           
       - name: Set up R dependencies (Windows)
-        if: runner.os == 'Windows'
+        if: ${{runner.os == 'Windows' || matrix.config.r >= '4.0' }}
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
