@@ -99,35 +99,16 @@ jobs:
           libxml2-dev \
           libharfbuzz-dev \
           libfribidi-dev
-          
-      - name: Set C++ standard (R 3.x)
+                
+      - name: Install vdiffr patched (R 3.5 / 3.6)
         if: ${{ matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
         run: |
-          mkdir -p ~/.R
-          cat <<EOF > ~/.R/Makevars
-          CXX=g++ -std=gnu++17
-          CXX11=g++ -std=gnu++17
-          CXX14=g++ -std=gnu++17
-          CXX17=g++ -std=gnu++17
-          
-          CXX11STD = -std=gnu++17
-          CXX14STD = -std=gnu++17
-          CXX17STD = -std=gnu++17
-          EOF
-
-      - name: Patch vdiffr for std::uint8_t (R 3.x)
-        if: matrix.config.r == '3.6' || matrix.config.r == '3.5'
-        run: |
-          echo "Patching devSVG.cpp to include <cstdint>..."
-          VDIFFR_PATH=$(Rscript -e "cat(find.package('vdiffr', quiet = TRUE))")
-          DEVSVG="$VDIFFR_PATH/src/devSVG.cpp"
-          if [ -f "$DEVSVG" ]; then
-            # Only insert if not already included
-            grep -q "#include <cstdint>" "$DEVSVG" || sed -i '1i#include <cstdint>' "$DEVSVG"
-            echo "Patch applied."
-          else
-            echo "devSVG.cpp not found; skipping patch."
-          fi
+          echo "Cloning vdiffr for patch..."
+          git clone --branch v1.0.0 https://github.com/r-lib/vdiffr.git vdiffr-src
+          echo "Adding #include <cstdint> to devSVG.cpp..."
+          sed -i '1i#include <cstdint>' vdiffr-src/src/devSVG.cpp
+          echo "Installing patched vdiffr..."
+          R CMD INSTALL --preclean --no-multiarch --with-keep.source vdiffr-src
           
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
