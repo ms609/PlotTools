@@ -95,21 +95,14 @@ jobs:
             check
             coverage
 
-      - name: Set up R dependencies (R 3.6)
-        if: matrix.config.r == '3.6'
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: |
-            vdiffr@0.3.4
-          needs: |
-            check
-
       - name: Set up R dependencies (Non-Windows)
-        if: runner.os != 'Windows' && matrix.config.r != '3.6'
+        if: runner.os != 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
             check
+          extra-packages: |
+            vdiffr
 
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
