@@ -102,6 +102,7 @@ jobs:
           
       - name: Set C++ standard (R 3.x)
         if: ${{ matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
+        run : |
           echo "CXX17=g++ -std=gnu++17" >> $GITHUB_ENV
           echo "CXX14=g++ -std=gnu++14" >> $GITHUB_ENV
           echo "CXX11=g++ -std=gnu++11" >> $GITHUB_ENV
