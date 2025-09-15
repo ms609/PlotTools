@@ -105,6 +105,11 @@ jobs:
         run: |
           Rscript -e "install.packages(c('diffobj','glue','htmltools','lifecycle','rlang','testthat','xml2','cpp11', 'rcmdcheck'), repos = 'https://packagemanager.posit.co/cran/2021-08-02')"
 
+      - name: Install xfun >0.36 (R 3.x)
+        if: matrix.config.r < '4.0'
+        run: |
+          Rscript -e "install.packages('xfun'), repos = 'https://packagemanager.posit.co/cran/2022-12-28')"
+
       - name: Install vdiffr patched (R 3.x)
         if: matrix.config.r < '4.0'
         run: |
