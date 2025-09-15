@@ -122,7 +122,6 @@ jobs:
             knitr
             rmarkdown
             sp
-            spelling
 
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
