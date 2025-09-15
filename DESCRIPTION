@@ -29,7 +29,7 @@ Suggests:
   spelling,
   testthat (>= 3.0),
   vdiffr (>= 1.0.0),
-Config/Needs/check: rcmdcheck
+Config/Needs/check: rcmdcheck, testthat, vdiffr
 Config/Needs/coverage: covr
 Config/Needs/metadata: codemeta
 Config/Needs/revdeps: revdepcheck
