@@ -114,6 +114,20 @@ jobs:
           CXX14STD = -std=gnu++17
           CXX17STD = -std=gnu++17
           EOF
+
+      - name: Patch vdiffr for std::uint8_t (R 3.x)
+        if: matrix.config.r == '3.6' || matrix.config.r == '3.5'
+        run: |
+          echo "Patching devSVG.cpp to include <cstdint>..."
+          VDIFFR_PATH=$(Rscript -e "cat(find.package('vdiffr', quiet = TRUE))")
+          DEVSVG="$VDIFFR_PATH/src/devSVG.cpp"
+          if [ -f "$DEVSVG" ]; then
+            # Only insert if not already included
+            grep -q "#include <cstdint>" "$DEVSVG" || sed -i '1i#include <cstdint>' "$DEVSVG"
+            echo "Patch applied."
+          else
+            echo "devSVG.cpp not found; skipping patch."
+          fi
           
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
