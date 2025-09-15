@@ -51,8 +51,8 @@ jobs:
         config:
           - {os: windows-latest, r: 'release'}
           - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-24.04, r: '3.6', rspm: "https://packagemanager.posit.co/cran/2020-12-18"}
-          - {os: ubuntu-24.04, r: '4.0', rspm: "https://packagemanager.posit.co/cran/2020-12-18"}
+          - {os: ubuntu-24.04, r: '3.6', rspm: "https://packagemanager.posit.co/cran/2021-06-16"}
+          - {os: ubuntu-24.04, r: '4.0', rspm: "https://packagemanager.posit.co/cran/2021-06-16"}
           - {os: ubuntu-24.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
           - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
 
