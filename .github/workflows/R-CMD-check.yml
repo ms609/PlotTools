@@ -88,6 +88,18 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      - name: Install system dependencies (old R)
+        if: ${{ matrix.config.r == '4.0' || matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+          libpng-dev \
+          libfreetype6-dev \
+          libjpeg-dev \
+          libxml2-dev \
+          libharfbuzz-dev \
+          libfribidi-dev
+
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
