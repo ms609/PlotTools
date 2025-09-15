@@ -119,6 +119,8 @@ jobs:
         with:
           dependencies: '"hard"'
           extra-packages:
+            testthat@3.0.4
+            waldo@0.4.0
             xfun@0.28
             knitr@1.33
             rmarkdown@2.10
