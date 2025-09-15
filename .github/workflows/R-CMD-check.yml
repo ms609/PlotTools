@@ -115,7 +115,7 @@ jobs:
           echo "Installing patched vdiffr..."
           R CMD INSTALL --preclean --no-multiarch --with-keep.source vdiffr-src
 
-      - name: Set up R dependencies (Windows)
+      - name: Set up R dependencies (R 3.x)
         if: matrix.config.r < '4.0'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
@@ -124,7 +124,7 @@ jobs:
             rcmdcheck
           
       - name: Set up R dependencies (Windows)
-        if: ${{runner.os == 'Windows' || matrix.config.r >= '4.0' }}
+        if: runner.os == 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
@@ -132,13 +132,11 @@ jobs:
             coverage
 
       - name: Set up R dependencies (Non-Windows)
-        if: runner.os != 'Windows'
+        if: ${{runner.os != 'Windows' && matrix.config.r >= '4.0' }}
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
             check
-          extra-packages: |
-            vdiffr?ignore-before-r=4.0
 
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
