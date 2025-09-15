@@ -122,6 +122,11 @@ jobs:
           dependencies: '"hard"'
           extra-packages: |
             rcmdcheck
+            knitr
+            rmarkdown
+            sp
+            spelling
+            testthat
           
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
