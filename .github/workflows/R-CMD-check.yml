@@ -101,6 +101,8 @@ jobs:
         with:
           needs: |
             check
+          extra-packages: |
+            vdiffr
 
       - name: Check package
         uses: r-lib/actions/check-r-package@v2
