@@ -102,12 +102,14 @@ jobs:
           
       - name: Set C++ standard (R 3.x)
         if: ${{ matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
-        run : |
-          mkdir -p ~/.R
-          echo "CXX=g++ -std=gnu++17" >> ~/.R/Makevars
-          echo "CXX11=g++ -std=gnu++17" >> ~/.R/Makevars
-          echo "CXX14=g++ -std=gnu++17" >> ~/.R/Makevars
-          echo "CXX17=g++ -std=gnu++17" >> ~/.R/Makevars
+          run: |
+            mkdir -p ~/.R
+            cat <<EOF > ~/.R/Makevars
+            CXX=g++ -std=gnu++17
+            CXX11=g++ -std=gnu++17
+            CXX14=g++ -std=gnu++17
+            CXX17=g++ -std=gnu++17
+            EOF
           
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
