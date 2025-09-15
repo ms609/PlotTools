@@ -109,6 +109,10 @@ jobs:
           CXX11=g++ -std=gnu++17
           CXX14=g++ -std=gnu++17
           CXX17=g++ -std=gnu++17
+          
+          CXX11STD = -std=gnu++17
+          CXX14STD = -std=gnu++17
+          CXX17STD = -std=gnu++17
           EOF
           
       - name: Set up R dependencies (Windows)
