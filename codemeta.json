@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "PlotTools",
   "description": "Annotate plots with legends for continuous variables and colour spectra using the base graphics plotting tools; and manipulate irregular polygons. Includes palettes for colour-blind viewers.",
-  "name": "PlotTools: Add Continuous Legends to Plots",
+  "name": "PlotTools: Extended Tools for Continuous Legends, Polygon Manipulation, and \n  Visual Display of Categorical Data",
   "relatedLink": "https://ms609.github.io/PlotTools/",
   "codeRepository": "https://github.com/ms609/PlotTools/",
   "issueTracker": "https://github.com/ms609/PlotTools/issues/",
@@ -142,7 +142,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "267.99KB",
+  "fileSize": "268.131KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -155,7 +155,7 @@
           "email": "martin.smith@durham.ac.uk"
         }
       ],
-      "name": "PlotTools: Add continuous legends to plots",
+      "name": "PlotTools: Extended Tools for Continuous Legends, Polygon Manipulation, and\n  Visual Display of Categorical Data",
       "identifier": "10.5281/zenodo.7803390",
       "@id": "https://doi.org/10.5281/zenodo.7803390",
       "sameAs": "https://doi.org/10.5281/zenodo.7803390",

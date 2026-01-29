@@ -1,5 +1,6 @@
 Package: PlotTools
-Title: Add Continuous Legends to Plots
+Title: Extended Tools for Continuous Legends, Polygon Manipulation, and 
+  Visual Display of Categorical Data
 Version: 0.4.0
 URL:
   https://ms609.github.io/PlotTools/,
