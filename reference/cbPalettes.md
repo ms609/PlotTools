@@ -1,0 +1,100 @@
+# Palettes compatible with colour blindness
+
+Colour palettes whose elements are chosen to be distinguishable by
+colour blind audiences.
+
+## Usage
+
+``` r
+cbPalette8
+
+cbPalette12
+
+cbPalette15
+
+cbPalette24
+
+altPalette8
+
+altPalette12
+
+altPalette15
+
+altPalette24
+```
+
+## Format
+
+Named character vectors listing RGB values for each colour.
+
+An object of class `character` of length 8.
+
+An object of class `character` of length 12.
+
+An object of class `character` of length 15.
+
+An object of class `character` of length 24.
+
+An object of class `character` of length 8.
+
+An object of class `character` of length 12.
+
+An object of class `character` of length 15.
+
+An object of class `character` of length 24.
+
+## Source
+
+<https://mk.bcgsc.ca/colorblind/palettes.mhtml>
+
+## Details
+
+Palettes are named according to the number of distinct colours they
+contain.
+
+`cbPalette8` is derived from the Obake-Ito palette.
+
+Each other palette is arranged in three groups, intended to achieve
+perceptual luminance uniformity for deuteranopic viewers (see source for
+details), from dark to light.
+
+For each `cbPalette`, an `altPalette` provides a hue selected from the
+many that are perceptually indistinguishable for deuteronopic viewers.
+
+## See also
+
+The eight-colour Okabe-Ito colour-blind palette is equivalent to
+`palette.colors(8)`.
+
+## Examples
+
+``` r
+par(mfrow = c(4, 1), mar = rep(1, 4))
+
+data("cbPalette8")
+plot.new()
+plot.window(xlim = c(1, 8), ylim = c(-1, 1))
+text(1:8, 1, col = cbPalette8)
+points(1:8, rep(0, 8), bg = cbPalette8, col = altPalette8,
+       pch = 22, cex = 2)
+
+data("cbPalette12")
+plot.new()
+plot.window(xlim = c(1, 12), ylim = c(-1, 1))
+text(1:12, 1, col = cbPalette12)
+points(1:12, rep(0, 12), bg = cbPalette12, col = altPalette12,
+       pch = 22, cex = 2)
+
+data("cbPalette15")
+plot.new()
+plot.window(xlim = c(1, 15), ylim = c(-1, 1))
+text(1:15, 1, col = cbPalette15)
+points(1:15, rep(0, 15), bg = cbPalette15, col = altPalette15,
+       pch = 22, cex = 2)
+
+plot.new()
+plot.window(xlim = c(1, 25), ylim = c(-1, 1))
+text(1:24, 1, col = cbPalette24)
+points(1:24, rep(0, 24), bg = cbPalette24, col = altPalette24,
+       pch = 22, cex = 2)
+```
