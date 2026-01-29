@@ -5,14 +5,12 @@
 #'
 #' Palettes are named according to the number of distinct colours they contain.
 #'
-#' `cbPalette8` is derived from the Obake-Ito palette.
-#'
-#' Each other palette is arranged in three groups, intended to achieve
+#' Each palette is arranged in three groups, intended to achieve
 #' perceptual luminance uniformity for deuteranopic viewers
 #' (see source for details), from dark to light.
 #'
 #' For each `cbPalette`, an `altPalette` provides a hue selected from the many
-#' that are perceptually indistinguishable for deuteronopic viewers.
+#' that are perceptually indistinguishable for deuteranopic viewers.
 #'
 #' @format Named character vectors listing RGB values for each colour.
 #'
@@ -48,8 +46,7 @@
 #' @source \url{https://mk.bcgsc.ca/colorblind/palettes.mhtml}
 #'
 #' @seealso
-#' The eight-colour Okabe-Ito colour-blind palette is equivalent to
-#' `palette.colors(8)`.
+#' `palette.colors(8)` provides an eight-colour Okabe-Ito colour-blind palette.
 #'
 #' @keywords datasets
 #' @name cbPalettes

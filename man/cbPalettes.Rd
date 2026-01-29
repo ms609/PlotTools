@@ -58,14 +58,12 @@ blind audiences.
 \details{
 Palettes are named according to the number of distinct colours they contain.
 
-\code{cbPalette8} is derived from the Obake-Ito palette.
-
-Each other palette is arranged in three groups, intended to achieve
+Each palette is arranged in three groups, intended to achieve
 perceptual luminance uniformity for deuteranopic viewers
 (see source for details), from dark to light.
 
 For each \code{cbPalette}, an \code{altPalette} provides a hue selected from the many
-that are perceptually indistinguishable for deuteronopic viewers.
+that are perceptually indistinguishable for deuteranopic viewers.
 }
 \examples{
 par(mfrow = c(4, 1), mar = rep(1, 4))
@@ -98,7 +96,6 @@ points(1:24, rep(0, 24), bg = cbPalette24, col = altPalette24,
        pch = 22, cex = 2)
 }
 \seealso{
-The eight-colour Okabe-Ito colour-blind palette is equivalent to
-\code{palette.colors(8)}.
+\code{palette.colors(8)} provides an eight-colour Okabe-Ito colour-blind palette.
 }
 \keyword{datasets}
