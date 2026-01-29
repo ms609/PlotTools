@@ -13,7 +13,7 @@
 \alias{altPalette24}
 \title{Palettes compatible with colour blindness}
 \format{
-Character vectors
+Named character vectors listing RGB values for each colour.
 
 An object of class \code{character} of length 8.
 
@@ -52,22 +52,23 @@ altPalette15
 altPalette24
 }
 \description{
-Colour palettes recommended for use with colour blind audiences.
+Colour palettes whose elements are chosen to be distinguishable by colour
+blind audiences.
 }
 \details{
-The eight-colour palette is derived from the Obake-Ito palette.
+Palettes are named according to the number of distinct colours they contain.
 
-Other palettes have been
+\code{cbPalette8} is derived from the Obake-Ito palette.
 
 Each other palette is arranged in three groups, intended to achieve
 perceptual luminance uniformity for deuteranopic viewers
 (see source for details), from dark to light.
 
-For each \code{cbPalette}, an \code{altPalette} provides a hue (one of many) that is
-perceptually indistinguishable for deuteronopic viewers.
+For each \code{cbPalette}, an \code{altPalette} provides a hue selected from the many
+that are perceptually indistinguishable for deuteronopic viewers.
 }
 \examples{
-par(mfrow = c(4, 1))
+par(mfrow = c(4, 1), mar = rep(1, 4))
 
 data("cbPalette8")
 plot.new()
@@ -97,7 +98,7 @@ points(1:24, rep(0, 24), bg = cbPalette24, col = altPalette24,
        pch = 22, cex = 2)
 }
 \seealso{
-The eight-colour Okabe-Ito colour-blind palette is available in base R using
+The eight-colour Okabe-Ito colour-blind palette is equivalent to
 \code{palette.colors(8)}.
 }
 \keyword{datasets}

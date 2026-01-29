@@ -1,22 +1,23 @@
 #' Palettes compatible with colour blindness
 #'
-#' Colour palettes recommended for use with colour blind audiences.
+#' Colour palettes whose elements are chosen to be distinguishable by colour
+#' blind audiences.
 #'
-#' The eight-colour palette is derived from the Obake-Ito palette.
+#' Palettes are named according to the number of distinct colours they contain.
 #'
-#' Other palettes have been
+#' `cbPalette8` is derived from the Obake-Ito palette.
 #'
 #' Each other palette is arranged in three groups, intended to achieve
 #' perceptual luminance uniformity for deuteranopic viewers
 #' (see source for details), from dark to light.
 #'
-#' For each `cbPalette`, an `altPalette` provides a hue (one of many) that is
-#' perceptually indistinguishable for deuteronopic viewers.
+#' For each `cbPalette`, an `altPalette` provides a hue selected from the many
+#' that are perceptually indistinguishable for deuteronopic viewers.
 #'
-#' @format Character vectors
+#' @format Named character vectors listing RGB values for each colour.
 #'
 #' @examples
-#' par(mfrow = c(4, 1))
+#' par(mfrow = c(4, 1), mar = rep(1, 4))
 #'
 #' data("cbPalette8")
 #' plot.new()
@@ -47,7 +48,7 @@
 #' @source \url{https://mk.bcgsc.ca/colorblind/palettes.mhtml}
 #'
 #' @seealso
-#' The eight-colour Okabe-Ito colour-blind palette is available in base R using
+#' The eight-colour Okabe-Ito colour-blind palette is equivalent to
 #' `palette.colors(8)`.
 #'
 #' @keywords datasets
