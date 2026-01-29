@@ -1,7 +1,7 @@
 ## Test environments
 
 * Local PC:
-  - Windows 10, R 4.4.1 (2024-06-14 ucrt)
+  - Windows 10, R devel
 
 * [GitHub Actions](https://github.com/ms609/PlotTools/actions)
   - Ubuntu 24.04
@@ -20,7 +20,7 @@ There are no ERRORs or WARNINGs or NOTEs.
 
 ## Downstream dependencies
 
-There are currently five reverse dependencies, all of which I maintain.
+There are currently six reverse dependencies, all of which I maintain.
 
 Reverse dependencies are checked using "revdepcheck" on
 [GitHub Actions](https://github.com/ms609/PlotTools/actions/workflows/revdep.yml).
