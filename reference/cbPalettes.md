@@ -52,19 +52,17 @@ An object of class `character` of length 24.
 Palettes are named according to the number of distinct colours they
 contain.
 
-`cbPalette8` is derived from the Obake-Ito palette.
-
-Each other palette is arranged in three groups, intended to achieve
-perceptual luminance uniformity for deuteranopic viewers (see source for
-details), from dark to light.
+Each palette is arranged in three groups, intended to achieve perceptual
+luminance uniformity for deuteranopic viewers (see source for details),
+from dark to light.
 
 For each `cbPalette`, an `altPalette` provides a hue selected from the
-many that are perceptually indistinguishable for deuteronopic viewers.
+many that are perceptually indistinguishable for deuteranopic viewers.
 
 ## See also
 
-The eight-colour Okabe-Ito colour-blind palette is equivalent to
-`palette.colors(8)`.
+`palette.colors(8)` provides an eight-colour Okabe-Ito colour-blind
+palette.
 
 ## Examples
 

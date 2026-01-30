@@ -7,7 +7,8 @@
   [](https://orcid.org/0000-0001-5660-1727)
 
 - **Martin Krzywinski**. Contributor.
-  [](https://orcid.org/0009-0005-5785-3631)
+  [](https://orcid.org/0009-0005-5785-3631)  
+  Palettes
 
 ## Citation
 

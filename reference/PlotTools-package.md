@@ -28,4 +28,5 @@ Useful links:
 Other contributors:
 
 - Martin Krzywinski <martink@bcgsc.ca>
-  ([ORCID](https://orcid.org/0009-0005-5785-3631)) \[contributor\]
+  ([ORCID](https://orcid.org/0009-0005-5785-3631)) (Palettes)
+  \[contributor\]
