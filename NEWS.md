@@ -1,6 +1,7 @@
-# PlotTools v0.3.1.9000 (development)
+# PlotTools v0.4.0 (2025-01-29)
 
-- Add colour-blind friendly palettes `cbPalette12`, `cbPalette15`, `cbPalette24`
+- Add colour-blind friendly palettes `cbPalette12`, `cbPalette15`,
+  `cbPalette24` and deuteranopic equivalents `altPaletteXX`.
 
 
 # PlotTools v0.3.1 (2024-08-27)

@@ -1,6 +1,7 @@
 Package: PlotTools
-Title: Add Continuous Legends to Plots
-Version: 0.3.1.9000
+Title: Extended Tools for Continuous Legends, Polygon Manipulation, and 
+  Visual Display of Categorical Data
+Version: 0.4.0
 URL:
   https://ms609.github.io/PlotTools/,
   https://github.com/ms609/PlotTools/
@@ -13,7 +14,7 @@ Authors@R: c(person("Martin R.", "Smith",
              person("Martin", "Krzywinski",
                     email = "martink@bcgsc.ca",
                     role = "ctb",
-                    comment = c(ORCID = "0009-0005-5785-3631")
+                    comment = c(ORCID = "0009-0005-5785-3631", "Palettes")
                    )
             )
 License: GPL (>= 2)
@@ -39,5 +40,5 @@ Config/testthat/parallel: false
 Language: en-GB
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 LazyData: true

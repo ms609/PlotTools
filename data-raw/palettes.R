@@ -6,10 +6,19 @@ cbPalette8 <- c(
   "ocean green"   = "#359B73",
   "bamboo"        = "#d55e00",
   "gamboge"       = "#e69f00",
-  "paris daisy"   = "#f0e442")
+  "paris daisy"   = "#f0e442"
+)
 
-altPalette8 <- c( "#000000", "#AA0DB4", "#FF54ED", "#00B19F",
-                  "#EB057A", "#F8071D", "#FF8D1A", "#9EFF37")
+altPalette8 <- c(
+  "#000000",
+  "#AA0DB4",
+  "#FF54ED",
+  "#00B19F",
+  "#EB057A",
+  "#F8071D",
+  "#FF8D1A",
+  "#9EFF37"
+)
 
 cbPalette12 <- c(
   "jazzberry jam" =     "#9F0162",
@@ -25,11 +34,23 @@ cbPalette12 <- c(
   "carmine" =           "#A40122",
   "alizarin crimoson" = "#E20134",
   "outrageous orange" = "#FF6E3A",
-  "bright spark" =      "#FFC33B")
+  "bright spark" =      "#FFC33B"
+)
 
-altPalette12 <- c("#006A5E", "#ED0D88", "#00BDA9", "#FFC4D4",
-                  "#0058CC", "#D208FB", "#FF66FD", "#00EFF9",
-                  "#156D03", "#009719", "#00C61B", "#00FB1D")
+altPalette12 <- c(
+  "#006A5E",
+  "#ED0D88",
+  "#00BDA9",
+  "#FFC4D4",
+  "#0058CC",
+  "#D208FB",
+  "#FF66FD",
+  "#00EFF9",
+  "#156D03",
+  "#009719",
+  "#00C61B",
+  "#00FB1D"
+)
 
 cbPalette15 <- c(
   "tyrian purple"     = "#68023F",
@@ -48,11 +69,26 @@ cbPalette15 <- c(
   "india green"       = "#008607",
   "tractor red"       = "#F60239",
   "radioactive green" = "#00E307",
-  "gargoyle gas"      = "#FFDC3D")
+  "gargoyle gas"      = "#FFDC3D"
+)
 
-altPalette15 <- c( "#00463C", "#C00B6F", "#00A090", "#FF95BA", "#5FFFDE",
-                   "#590A87", "#0063E5", "#ED0DFD", "#00C7F9", "#FFD5FD",
-                   "#3D3C04", "#C80B2A", "#00A51C", "#FFA035", "#9BFF2D")
+altPalette15 <- c(
+  "#00463C",
+  "#C00B6F",
+  "#00A090",
+  "#FF95BA",
+  "#5FFFDE",
+  "#590A87",
+  "#0063E5",
+  "#ED0DFD",
+  "#00C7F9",
+  "#FFD5FD",
+  "#3D3C04",
+  "#C80B2A",
+  "#00A51C",
+  "#FFA035",
+  "#9BFF2D"
+)
 
 cbPalette24 <- c(
   "mulberry"            = "#5A0A33",
@@ -80,7 +116,8 @@ cbPalette24 <- c(
   "carmine"             = "#FF4235",
   "burning orange"      = "#FF8735",
   "frenzee"             = "#FFB935",
-  "gargoyle gas"        = "#FFE239")
+  "gargoyle gas"        = "#FFE239"
+)
 
 altPalette24 <- c(
   "sherwood green"       = "#003D30",
@@ -108,13 +145,18 @@ altPalette24 <- c(
   "kelly green"          = "#00B408",
   "vivid harlequin"      = "#00D302",
   "radioactive green"    = "#00F407",
-  "lime"                 = "#AFFF2A")
+  "lime"                 = "#AFFF2A"
+)
 
 usethis::use_data(
-  cbPalette8, altPalette8,
-  cbPalette12, altPalette12,
-  cbPalette15, altPalette15,
-  cbPalette24, altPalette24,
+  cbPalette8,
+  altPalette8,
+  cbPalette12,
+  altPalette12,
+  cbPalette15,
+  altPalette15,
+  cbPalette24,
+  altPalette24,
   overwrite = TRUE,
   compress = "gzip"
 )

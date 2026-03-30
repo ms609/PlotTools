@@ -28,7 +28,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Martin Krzywinski \email{martink@bcgsc.ca} (\href{https://orcid.org/0009-0005-5785-3631}{ORCID}) [contributor]
+  \item Martin Krzywinski \email{martink@bcgsc.ca} (\href{https://orcid.org/0009-0005-5785-3631}{ORCID}) (Palettes) [contributor]
 }
 
 }
