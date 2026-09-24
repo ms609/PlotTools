@@ -17,12 +17,14 @@ manipulate irregular polygons and locate their centres.
 Install the latest production version from CRAN using
 
 ``` r
+
 install.packages("PlotTools")
 ```
 
 or install the development version from GitHub with
 
 ``` r
+
 devtools::install_github("ms609/PlotTools")
 ```
 
@@ -32,6 +34,7 @@ on GitHub](https://github.com/ms609/PlotTools/issues/).
 ## Usage
 
 ``` r
+
 # Select a colour palette
 palette <- if (packageVersion("grDevices") > 3.6) hcl.colors else heat.colors
 
